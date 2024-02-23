@@ -2,7 +2,7 @@ name: Build and Deploy App to Firebase App Distribution
 on:
   push:
     tags:
-      - "v*.*.*"
+      - "v*.*"
 
 jobs:
   build:

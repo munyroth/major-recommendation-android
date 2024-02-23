@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    tools:context=".ui.fragment.HomeFragment">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_view_recommending_majors"
+        style="@style/CardViewStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginTop="8dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/img_recommending_majors"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="8dp"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/img_major" />
+
+            <TextView
+                android:id="@+id/txt_recommending_majors"
+                style="@style/MainTextStyle"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@+id/img_recommending_majors"
+                android:text="@string/recommending_major" />
+
+            <ImageView
+                android:id="@+id/img_next"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_margin="16dp"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/ic_next" />
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginTop="4dp"
+        android:columnCount="3">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_view_majors"
+            style="@style/CardViewStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <ImageView
+                    android:id="@+id/img_majors"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/img_student_thinking_about_major" />
+
+                <TextView
+                    android:id="@+id/txt_majors"
+                    style="@style/MainTextStyle"
+                    android:layout_gravity="bottom|center_horizontal"
+                    android:layout_marginHorizontal="6dp"
+                    android:text="@string/majors" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <Space
+            android:layout_width="4dp"
+            android:layout_height="match_parent"
+            android:layout_columnWeight="0" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_view_universities"
+            style="@style/CardViewStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <ImageView
+                    android:id="@+id/img_universities"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/img_university" />
+
+                <TextView
+                    android:id="@+id/txt_universities"
+                    style="@style/MainTextStyle"
+                    android:layout_gravity="bottom|center_horizontal"
+                    android:layout_marginHorizontal="6dp"
+                    android:text="@string/universities" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+    </GridLayout>
+</LinearLayout>

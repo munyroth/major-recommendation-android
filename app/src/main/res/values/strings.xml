@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Major Recommendation</string>
+
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_account">Account</string>
+    <string name="title_major">Majors</string>
+
+    <string name="label_fill_score">Please input your score for each subject from high school.</string>
+
+    <string name="recommending_major">Recommending Major</string>
+    <string name="majors">Majors</string>
+    <string name="universities">Universities</string>
+
+    <string name="title_result_recommendation">Base on your score, we can calculate to find related major for you:</string>
+    <string name="title_science">Science</string>
+    <string name="title_social">Social</string>
+</resources>

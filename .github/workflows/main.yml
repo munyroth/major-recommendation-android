@@ -1,0 +1,46 @@
+name: Build and Deploy App to Firebase App Distribution
+on:
+  push:
+    tags:
+      - "v*.*.*"
+
+jobs:
+  build:
+    name: Build and Deploy App to Firebase App Distribution
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup JDK
+        uses: actions/setup-java@v4
+        with:
+          cache: gradle
+          distribution: 'adopt'
+          java-version: '17'
+
+      - name: Grant execute permission to make gradlew executable
+        run: chmod +x gradlew
+
+      - name: Grant execute permission to build script
+        run: chmod +x ./build_script.sh
+
+      - name: Build APK
+        run: ./build_script.sh
+
+      - name: Upload APK to artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: app
+          path: app.apk
+
+      - name: Deploy APK to Firebase App Distribution
+        run: |
+          # Install Firebase CLI
+          sudo npm install -g firebase-tools
+          
+          # Distribute to Firebase App Distribution
+          firebase appdistribution:distribute app.apk --app "${APP_ID}" --token "${FIREBASE_TOKEN}" --groups "group-1"
+        env:
+          APP_ID: ${{ secrets.APP_ID }}
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}

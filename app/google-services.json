@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "535328424246",
+    "project_id": "major-recommendation",
+    "storage_bucket": "major-recommendation.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:535328424246:android:d9600d601a751a96f83397",
+        "android_client_info": {
+          "package_name": "com.munyroth.majorrecommendation"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD2WLjJnmfW2vq7SOabd7htBOGf0QNV5lo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

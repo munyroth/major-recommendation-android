@@ -1,7 +1,15 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+
+    // Google services Gradle plugin
     id("com.google.gms.google-services")
+
+    // Add the Crashlytics Gradle plugin
+    id("com.google.firebase.crashlytics")
+
+    // Add the Performance Monitoring Gradle plugin
+    id("com.google.firebase.firebase-perf")
 }
 
 android {
@@ -12,8 +20,8 @@ android {
         applicationId = "com.munyroth.majorrecommendation"
         minSdk = 30
         targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = 2
+        versionName = "1.1"
         buildConfigField("String", "BASE_URL", "\"https://major.furniturestores.me/api/\"")
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -96,7 +104,16 @@ dependencies {
     implementation("com.squareup.picasso:picasso:2.71828")
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
-    implementation("com.google.firebase:firebase-analytics:21.5.1")
+
+    // Import the BoM for the Firebase platform
+    implementation(platform("com.google.firebase:firebase-bom:32.7.2"))
+
+    // Add the dependencies for the Crashlytics and Analytics libraries
+    implementation("com.google.firebase:firebase-crashlytics")
+    implementation("com.google.firebase:firebase-analytics")
+
+    // Add the dependency for the Performance Monitoring library
+    implementation("com.google.firebase:firebase-perf")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

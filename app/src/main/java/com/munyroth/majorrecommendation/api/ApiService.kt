@@ -9,6 +9,7 @@ import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface ApiService {
@@ -29,4 +30,10 @@ interface ApiService {
     suspend fun getUniversities(
         @Query("search") search: String? = null
     ): Response<ResData<List<University>>>
+
+    // Endpoint for getting university by id
+    @GET("v1/university/{id}")
+    suspend fun getUniversityById(
+        @Path("id") id: Int
+    ): Response<ResData<University>>
 }

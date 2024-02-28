@@ -1,7 +1,6 @@
 package com.munyroth.majorrecommendation.ui.activity
 
 import android.content.Intent
-import android.util.Log
 import android.widget.EditText
 import androidx.activity.viewModels
 import com.google.gson.Gson
@@ -72,7 +71,7 @@ class InputSubjectScoreScienceActivity : BaseActivity<ActivityInputSubjectScoreS
                 }
 
                 Status.ERROR -> {
-                    Log.e("InputSubjectScoreScience", "Error: ${it.status}")
+
                 }
 
                 Status.LOADING -> {

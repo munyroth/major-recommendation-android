@@ -20,8 +20,8 @@ android {
         applicationId = "com.munyroth.majorrecommendation"
         minSdk = 30
         targetSdk = 34
-        versionCode = 2
-        versionName = "1.1"
+        versionCode = 3
+        versionName = "1.2"
         buildConfigField("String", "BASE_URL", "\"https://major.furniturestores.me/api/\"")
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"

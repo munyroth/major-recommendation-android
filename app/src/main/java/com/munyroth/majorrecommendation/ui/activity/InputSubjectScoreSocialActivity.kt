@@ -1,9 +1,9 @@
 package com.munyroth.majorrecommendation.ui.activity
 
 import android.content.Intent
-import android.util.Log
 import android.widget.EditText
 import androidx.activity.viewModels
+import com.google.gson.Gson
 import com.munyroth.majorrecommendation.databinding.ActivityInputSubjectScoreSocialBinding
 import com.munyroth.majorrecommendation.model.Status
 import com.munyroth.majorrecommendation.request.RecommendationRequest
@@ -61,12 +61,17 @@ class InputSubjectScoreSocialActivity : BaseActivity<ActivityInputSubjectScoreSo
         recommendationViewModel.recommendation.observe(this) {
             when (it.status) {
                 Status.SUCCESS -> {
-                    val activityResultRecommendation = Intent(this, ResultRecommendationActivity::class.java)
+                    val activityResultRecommendation =
+                        Intent(this, ResultRecommendationActivity::class.java)
+                    val gson = Gson()
+                    val json = gson.toJson(it.data?.data)
+
+                    activityResultRecommendation.putExtra("data", json)
                     startActivity(activityResultRecommendation)
                 }
 
                 Status.ERROR -> {
-                    Log.e("Recommendation", "Error: ${it.status}")
+
                 }
 
                 Status.LOADING -> {

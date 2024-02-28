@@ -1,5 +1,6 @@
 package com.munyroth.majorrecommendation.ui.activity
 
+import android.content.Intent
 import android.os.Handler
 import android.widget.ProgressBar
 import android.widget.SearchView
@@ -24,7 +25,7 @@ class UniversityActivity : BaseActivity<ActivityUniversityBinding>(ActivityUnive
 
     override fun initActions() {
         supportActionBar?.apply {
-            title = "University"
+            title = "Universities"
             setDisplayHomeAsUpEnabled(true)
         }
 
@@ -88,7 +89,11 @@ class UniversityActivity : BaseActivity<ActivityUniversityBinding>(ActivityUnive
         // Create adapter
         adapter = DynamicAdapter(ViewHolderUniversityBinding::inflate) { view, item, binding ->
             view.setOnClickListener {
-
+                val intent = Intent(this, UniversityDetailActivity::class.java)
+                intent.putExtra("university_id", item.id)
+                intent.putExtra("university_name", item.nameEn)
+                intent.putExtra("university_logo", item.logo)
+                startActivity(intent)
             }
 
             with(binding) {

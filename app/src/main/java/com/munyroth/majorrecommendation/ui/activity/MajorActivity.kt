@@ -24,7 +24,7 @@ class MajorActivity : BaseActivity<ActivityMajorBinding>(ActivityMajorBinding::i
 
     override fun initActions() {
         supportActionBar?.apply {
-            title = "Major"
+            title = "Majors"
             setDisplayHomeAsUpEnabled(true)
         }
 

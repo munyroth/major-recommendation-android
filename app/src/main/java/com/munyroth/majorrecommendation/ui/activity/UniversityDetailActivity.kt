@@ -4,22 +4,36 @@ import android.content.Intent
 import android.net.Uri
 import android.widget.ProgressBar
 import androidx.activity.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.munyroth.majorrecommendation.adapter.DynamicAdapter
 import com.munyroth.majorrecommendation.databinding.ActivityUniversityDetailBinding
+import com.munyroth.majorrecommendation.databinding.ViewHolderDepartmentBinding
+import com.munyroth.majorrecommendation.databinding.ViewHolderFacultyBinding
+import com.munyroth.majorrecommendation.model.Department
+import com.munyroth.majorrecommendation.model.Faculty
 import com.munyroth.majorrecommendation.model.Status
 import com.munyroth.majorrecommendation.viewmodel.UniversityDetailViewModel
 
 class UniversityDetailActivity : BaseActivity<ActivityUniversityDetailBinding>(
     ActivityUniversityDetailBinding::inflate
 ) {
-    private val universityDetailViewModel: UniversityDetailViewModel by viewModels()
+    companion object {
+        const val EXTRA_UNIVERSITY_ID = "university_id"
+        const val EXTRA_UNIVERSITY_NAME = "university_name"
+        const val EXTRA_UNIVERSITY_LOGO = "university_logo"
+    }
 
+    private lateinit var adapterFaculty: DynamicAdapter<Faculty, ViewHolderFacultyBinding>
+    private lateinit var adapterDepartment: DynamicAdapter<Department, ViewHolderDepartmentBinding>
+
+    private val universityDetailViewModel: UniversityDetailViewModel by viewModels()
     private val progressBar: ProgressBar by lazy { binding.progressBar }
+
     override fun initActions() {
         // Get id, name, and logo from previous activity
-        val intent = intent
-        val id = intent.getIntExtra("university_id", 0)
-        val name = intent.getStringExtra("university_name")
-        val logo = intent.getStringExtra("university_logo")
+        val id = intent.getIntExtra(EXTRA_UNIVERSITY_ID, 0)
+        val name = intent.getStringExtra(EXTRA_UNIVERSITY_NAME)
+        val logo = intent.getStringExtra(EXTRA_UNIVERSITY_LOGO)
 
         supportActionBar?.apply {
             title = name
@@ -33,50 +47,100 @@ class UniversityDetailActivity : BaseActivity<ActivityUniversityDetailBinding>(
     }
 
     override fun setupObservers() {
-        universityDetailViewModel.university.observe(this) {
-            when (it.status) {
-                Status.LOADING -> {
-                    progressBar.visibility = ProgressBar.VISIBLE
-                }
-
+        universityDetailViewModel.university.observe(this) { resource ->
+            when (resource.status) {
+                Status.LOADING -> progressBar.visibility = ProgressBar.VISIBLE
                 Status.SUCCESS -> {
                     progressBar.visibility = ProgressBar.GONE
                     binding.llDetail.visibility = ProgressBar.VISIBLE
 
-                    val university = it.data?.data
-                    binding.tvPhoneCall.text = university?.phone
-                    binding.tvPhoneCall.setOnClickListener {
-                        val intent =
-                            Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + university?.phone))
-                        startActivity(intent)
-                    }
+                    val university = resource.data?.data
+                    university?.let {
+                        with(binding) {
+                            it.phone?.let { phone ->
+                                tvPhoneCall.text = "0$phone"
+                                tvPhoneCall.setOnClickListener { _ ->
+                                    dialPhoneNumber(phone)
+                                }
+                            }
 
-                    binding.tvEnvelope.text = university?.email
-                    binding.tvEnvelope.setOnClickListener {
-                        val intent =
-                            Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:" + university?.email))
-                        startActivity(intent)
-                    }
+                            it.email?.let { email ->
+                                tvEnvelope.text = email
+                                tvEnvelope.setOnClickListener { _ ->
+                                    sendEmail(email)
+                                }
+                            }
 
-                    binding.tvSiteBrowser.text = buildString {
-                        append("https://")
-                        append(university?.website)
-                    }
-                    binding.tvSiteBrowser.setOnClickListener {
-                        val intent =
-                            Intent(Intent.ACTION_VIEW, Uri.parse("https:" + university?.website))
-                        startActivity(intent)
+                            it.website?.let { website ->
+                                tvSiteBrowser.text = website
+                                tvSiteBrowser.setOnClickListener { _ ->
+                                    openWebsite(website)
+                                }
+                            }
+                        }
+
+                        displayFaculties(it.faculties)
                     }
                 }
 
-                Status.ERROR -> {
-                    progressBar.visibility = ProgressBar.GONE
-                }
-
-                else -> {
-                    progressBar.visibility = ProgressBar.GONE
-                }
+                Status.ERROR -> progressBar.visibility = ProgressBar.GONE
+                else -> progressBar.visibility = ProgressBar.GONE
             }
         }
+    }
+
+    private fun dialPhoneNumber(phoneNumber: String) {
+        val intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:0$phoneNumber"))
+        startActivity(intent)
+    }
+
+    private fun sendEmail(email: String) {
+        val intent = Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:$email"))
+        startActivity(intent)
+    }
+
+    private fun openWebsite(website: String) {
+        val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https:$website"))
+        startActivity(intent)
+    }
+
+    private fun displayFaculties(data: List<Faculty>?) {
+        val linearLayout = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        binding.rvFaculty.layoutManager = linearLayout
+
+        adapterFaculty =
+            DynamicAdapter(ViewHolderFacultyBinding::inflate) { _, item, binding ->
+                with(binding) {
+                    tvName.text = item.nameEn
+                }
+
+                displayDepartments(binding, item.departments)
+            }
+        if (data != null) {
+            adapterFaculty.setData(data)
+        }
+        binding.rvFaculty.adapter = adapterFaculty
+    }
+
+    private fun displayDepartments(binding: ViewHolderFacultyBinding, data: List<Department>?) {
+        val linearLayout = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        binding.rvDepartment.layoutManager = linearLayout
+
+        adapterDepartment =
+            DynamicAdapter(ViewHolderDepartmentBinding::inflate) { view, item, departmentBinding ->
+                view.setOnClickListener {
+
+                }
+
+                with(departmentBinding) {
+                    tvName.text = item.nameEn
+                }
+            }
+
+        if (data != null) {
+            adapterDepartment.setData(data)
+        }
+
+        binding.rvDepartment.adapter = adapterDepartment
     }
 }

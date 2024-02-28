@@ -98,7 +98,7 @@ class UniversityActivity : BaseActivity<ActivityUniversityBinding>(ActivityUnive
 
             with(binding) {
                 Picasso.get().load(item.logo).into(img)
-                txtTitle.text = item.nameKm
+                txtTitle.text = item.nameEn
             }
         }
         if (data != null) {

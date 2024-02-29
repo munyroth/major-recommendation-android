@@ -13,6 +13,7 @@ import com.munyroth.majorrecommendation.model.Department
 import com.munyroth.majorrecommendation.model.Faculty
 import com.munyroth.majorrecommendation.model.Status
 import com.munyroth.majorrecommendation.viewmodel.UniversityDetailViewModel
+import com.squareup.picasso.Picasso
 
 class UniversityDetailActivity : BaseActivity<ActivityUniversityDetailBinding>(
     ActivityUniversityDetailBinding::inflate
@@ -57,6 +58,11 @@ class UniversityDetailActivity : BaseActivity<ActivityUniversityDetailBinding>(
                     val university = resource.data?.data
                     university?.let {
                         with(binding) {
+                            Picasso.get().load(it.logo).into(ivUniversity)
+                            tvUniversityName.text = it.nameEn
+                            tvUniversityType.text = it.universityType
+                            tvUniversityDescription.text = it.aboutEn
+
                             it.phone?.let { phone ->
                                 tvPhoneCall.text = "0$phone"
                                 tvPhoneCall.setOnClickListener { _ ->

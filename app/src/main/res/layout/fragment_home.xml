@@ -37,7 +37,7 @@
                 style="@style/MainTextStyle"
                 android:layout_centerVertical="true"
                 android:layout_toEndOf="@+id/img_recommending_majors"
-                android:text="@string/recommending_major" />
+                android:text="@string/title_major_recommendation" />
 
             <ImageView
                 android:id="@+id/img_next"
@@ -47,7 +47,7 @@
                 android:layout_centerVertical="true"
                 android:layout_margin="16dp"
                 android:contentDescription="@string/app_name"
-                android:src="@drawable/ic_next" />
+                android:src="@drawable/ic_angle_small_right" />
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 
@@ -85,7 +85,7 @@
                     style="@style/MainTextStyle"
                     android:layout_gravity="bottom|center_horizontal"
                     android:layout_marginHorizontal="6dp"
-                    android:text="@string/majors" />
+                    android:text="@string/title_majors" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
@@ -120,7 +120,7 @@
                     style="@style/MainTextStyle"
                     android:layout_gravity="bottom|center_horizontal"
                     android:layout_marginHorizontal="6dp"
-                    android:text="@string/universities" />
+                    android:text="@string/title_universities" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
     </GridLayout>

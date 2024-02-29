@@ -6,6 +6,7 @@ import android.widget.ProgressBar
 import android.widget.SearchView
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.munyroth.majorrecommendation.R
 import com.munyroth.majorrecommendation.adapter.DynamicAdapter
 import com.munyroth.majorrecommendation.databinding.ActivityUniversityBinding
 import com.munyroth.majorrecommendation.databinding.ViewHolderUniversityBinding
@@ -25,7 +26,7 @@ class UniversityActivity : BaseActivity<ActivityUniversityBinding>(ActivityUnive
 
     override fun initActions() {
         supportActionBar?.apply {
-            title = "Universities"
+            title = getString(R.string.title_universities)
             setDisplayHomeAsUpEnabled(true)
         }
 

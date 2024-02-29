@@ -1,19 +1,27 @@
 <resources>
-    <string name="app_name">Major Recommendation</string>
+    <string name="app_name" translatable="false">Major Recommendation</string>
+
+    <string name="english" translatable="false">English</string>
+    <string name="khmer" translatable="false">ខ្មែរ</string>
 
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_more">More</string>
     <string name="title_account">Account</string>
-    <string name="title_major">Majors</string>
 
+    <string name="title_change_language">Change Language</string>
+
+    <string name="title_major_recommendation">Major Recommendation</string>
+    <string name="title_majors">Majors</string>
+    <string name="title_universities">Universities</string>
+    <string name="title_science">Class Science</string>
+    <string name="title_social">Class Social</string>
+
+    <string name="label_contact">Contact:</string>
+    <string name="label_faculty">Faculty:</string>
     <string name="label_fill_score">Please input your score for each subject from high school.</string>
+    <string name="label_result_recommendation">Base on your score, we can calculate to find related major for you:</string>
 
-    <string name="recommending_major">Recommending Major</string>
-    <string name="majors">Majors</string>
-    <string name="universities">Universities</string>
-
-    <string name="title_result_recommendation">Base on your score, we can calculate to find related major for you:</string>
-    <string name="title_science">Science</string>
-    <string name="title_social">Social</string>
+    <string name="next">Next</string>
+    <string name="finish">Finish</string>
+    <string name="save">Save</string>
 </resources>

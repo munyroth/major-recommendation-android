@@ -3,12 +3,20 @@
 
     <item
         android:id="@+id/navigation_home"
+        android:enabled="true"
         android:icon="@drawable/ic_home"
         android:title="@string/title_home" />
 
     <item
-        android:id="@+id/navigation_account"
-        android:icon="@drawable/ic_account"
-        android:title="@string/title_account" />
+        android:id="@+id/navigation_more"
+        android:enabled="true"
+        android:icon="@drawable/ic_menu_dots"
+        android:title="@string/title_more" />
+
+<!--    <item-->
+<!--        android:id="@+id/navigation_account"-->
+<!--        android:enabled="true"-->
+<!--        android:icon="@drawable/ic_account"-->
+<!--        android:title="@string/title_account" />-->
 
 </menu>

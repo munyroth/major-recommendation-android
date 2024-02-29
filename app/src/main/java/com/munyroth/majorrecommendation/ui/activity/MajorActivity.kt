@@ -5,6 +5,7 @@ import android.widget.ProgressBar
 import android.widget.SearchView
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.munyroth.majorrecommendation.R
 import com.munyroth.majorrecommendation.adapter.DynamicAdapter
 import com.munyroth.majorrecommendation.databinding.ActivityMajorBinding
 import com.munyroth.majorrecommendation.databinding.ViewHolderMajorBinding
@@ -24,7 +25,7 @@ class MajorActivity : BaseActivity<ActivityMajorBinding>(ActivityMajorBinding::i
 
     override fun initActions() {
         supportActionBar?.apply {
-            title = "Majors"
+            title = getString(R.string.title_majors)
             setDisplayHomeAsUpEnabled(true)
         }
 

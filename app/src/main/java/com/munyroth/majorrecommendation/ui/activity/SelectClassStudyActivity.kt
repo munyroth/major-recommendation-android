@@ -1,6 +1,7 @@
 package com.munyroth.majorrecommendation.ui.activity
 
 import android.content.Intent
+import com.munyroth.majorrecommendation.R
 import com.munyroth.majorrecommendation.databinding.ActivitySelectClassStudyBinding
 
 class SelectClassStudyActivity : BaseActivity<ActivitySelectClassStudyBinding>(
@@ -8,7 +9,7 @@ class SelectClassStudyActivity : BaseActivity<ActivitySelectClassStudyBinding>(
 ) {
     override fun initActions() {
         supportActionBar?.apply {
-            title = "Recommendation"
+            title = getString(R.string.title_major_recommendation)
             setDisplayHomeAsUpEnabled(true)
         }
     }

@@ -12,6 +12,12 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
+        android:id="@+id/navigation_more"
+        android:name="com.munyroth.majorrecommendation.ui.fragment.MoreFragment"
+        android:label="@string/title_more"
+        tools:layout="@layout/fragment_more" />
+
+    <fragment
         android:id="@+id/navigation_account"
         android:name="com.munyroth.majorrecommendation.ui.fragment.AccountFragment"
         android:label="@string/title_account"

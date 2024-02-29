@@ -43,7 +43,7 @@
                 android:layout_centerVertical="true"
                 android:layout_margin="16dp"
                 android:contentDescription="@string/app_name"
-                android:src="@drawable/ic_next" />
+                android:src="@drawable/ic_angle_small_right" />
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 
@@ -84,7 +84,7 @@
                 android:layout_centerVertical="true"
                 android:layout_margin="16dp"
                 android:contentDescription="@string/app_name"
-                android:src="@drawable/ic_next" />
+                android:src="@drawable/ic_angle_small_right" />
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 </LinearLayout>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_home">ទំព័រដើម</string>
+    <string name="title_more">ផ្សេងៗ</string>
+    <string name="title_account">គណនី</string>
+
+    <string name="title_change_language">ប្តូរភាសា</string>
+
+    <string name="title_major_recommendation">ការណែនាំមុខជំនាញ</string>
+    <string name="title_majors">ជំនាញ</string>
+    <string name="title_universities">សាកលវិទ្យាល័យ</string>
+    <string name="title_science">ថ្នាក់វិទ្យាសាស្ត្រពិត</string>
+    <string name="title_social">ថ្នាក់វិទ្យាសាស្ត្រសង្គម</string>
+
+    <string name="label_fill_score">សូមបំពេញពិន្ទុរបស់អ្នកសម្រាប់មុខវិជ្ជាពីអនុវិទ្យាល័យ</string>
+    <string name="label_result_recommendation">តាមរយៈពិន្ទុរបស់អ្នក, យើងអាចគណនាដើម្បីស្វែងយល់អំពីជំនាញដែលពាក់ព័ន្ធសម្រាប់អ្នក</string>
+    <string name="label_contact">ទំនាក់ទំនង:</string>
+    <string name="label_faculty">មហាវិទ្យាល័យ:</string>
+    <string name="next">បន្ទាប់</string>
+    <string name="finish">បញ្ចប់</string>
+    <string name="save">រក្សាទុក</string>
+</resources>

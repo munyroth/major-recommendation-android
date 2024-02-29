@@ -4,6 +4,7 @@ import android.content.Intent
 import android.widget.EditText
 import androidx.activity.viewModels
 import com.google.gson.Gson
+import com.munyroth.majorrecommendation.R
 import com.munyroth.majorrecommendation.databinding.ActivityInputSubjectScoreSocialBinding
 import com.munyroth.majorrecommendation.model.Status
 import com.munyroth.majorrecommendation.request.RecommendationRequest
@@ -34,7 +35,7 @@ class InputSubjectScoreSocialActivity : BaseActivity<ActivityInputSubjectScoreSo
 
     override fun initActions() {
         supportActionBar?.apply {
-            title = "Recommendation"
+            title = getString(R.string.title_major_recommendation)
             setDisplayHomeAsUpEnabled(true)
         }
 

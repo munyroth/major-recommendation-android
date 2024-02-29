@@ -1,5 +1,9 @@
 package com.munyroth.majorrecommendation.ui.activity
 
+import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
+import android.graphics.drawable.Drawable
+import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -36,7 +40,27 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
         // menu should be considered as top-level destinations.
         appBarConfiguration = AppBarConfiguration(navController.graph)
 
-        setupActionBarWithNavController(navController, appBarConfiguration)
+//        setupActionBarWithNavController(navController, appBarConfiguration)
         bottomNavView.setupWithNavController(navController)
+
+        supportActionBar?.apply {
+            // Set logo for action bar
+            setDisplayShowHomeEnabled(true)
+            val logoDrawable = ContextCompat.getDrawable(this@MainActivity, R.drawable.ic_app) // Get the drawable
+            val resizedDrawable = resizeDrawable(logoDrawable!!) // Resize the drawable
+            setLogo(resizedDrawable) // Set the resized drawable as the logo
+            setDisplayUseLogoEnabled(true)
+        }
+    }
+
+    // Function to resize a drawable
+    private fun resizeDrawable(drawable: Drawable): Drawable {
+        val bitmap = Bitmap.createScaledBitmap(
+            (drawable as BitmapDrawable).bitmap,
+            64,
+            64,
+            true
+        )
+        return BitmapDrawable(resources, bitmap)
     }
 }

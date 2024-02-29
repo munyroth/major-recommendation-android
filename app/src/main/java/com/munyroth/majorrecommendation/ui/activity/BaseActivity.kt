@@ -4,7 +4,6 @@ import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.viewbinding.ViewBinding
 import com.munyroth.majorrecommendation.utility.AppPreference
 import java.util.Locale
@@ -34,7 +33,6 @@ abstract class BaseActivity<T : ViewBinding>(
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val splashScreen = installSplashScreen()
 
         _binding = bindingFunction(layoutInflater)
         setContentView(binding.root)

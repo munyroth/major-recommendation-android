@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import com.munyroth.majorrecommendation.R
 import com.munyroth.majorrecommendation.adapter.DynamicAdapter
 import com.munyroth.majorrecommendation.databinding.ActivityResultRecommendationBinding
 import com.munyroth.majorrecommendation.databinding.ViewHolderResultRecommendationBinding
@@ -17,7 +18,7 @@ class ResultRecommendationActivity : BaseActivity<ActivityResultRecommendationBi
 
     override fun initActions() {
         supportActionBar?.apply {
-            title = "Recommendation"
+            title = getString(R.string.title_major_recommendation)
             setDisplayHomeAsUpEnabled(true)
         }
 

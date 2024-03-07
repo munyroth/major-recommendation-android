@@ -48,7 +48,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -58,6 +57,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
@@ -73,6 +73,7 @@ import com.google.firebase.messaging.FirebaseMessaging
 import com.munyroth.majorrecommendation.R
 import com.munyroth.majorrecommendation.ui.fragment.Home
 import com.munyroth.majorrecommendation.ui.fragment.More
+import com.munyroth.majorrecommendation.ui.theme.AppTheme
 import com.munyroth.majorrecommendation.utility.AppPreference
 import com.munyroth.majorrecommendation.viewmodel.MainViewModel
 import java.util.Locale
@@ -123,7 +124,9 @@ class MainActivity : ComponentActivity() {
         askNotificationPermission()
 
         setContent {
-            Screen()
+            AppTheme {
+                Screen()
+            }
         }
     }
 
@@ -180,7 +183,7 @@ fun Screen() {
     val navController = rememberNavController()
 
     val sheetState = rememberModalBottomSheetState()
-    val scope = rememberCoroutineScope()
+//    val scope = rememberCoroutineScope()
     var showBottomSheet by remember { mutableStateOf(false) }
 
     // Function to update showBottomSheet state
@@ -194,6 +197,8 @@ fun Screen() {
                 ),
                 title = {
                     Text(
+                        style = MaterialTheme.typography.titleLarge
+                            .copy(fontWeight = FontWeight.Bold),
                         modifier = Modifier.fillMaxWidth(),
                         textAlign = TextAlign.Start,
                         text = stringResource(id = R.string.app_name),
@@ -294,7 +299,9 @@ fun LanguageSettings(
                 )
                 Text(
                     text = text.value,
-                    style = MaterialTheme.typography.bodyLarge,
+                    style = MaterialTheme.typography
+                        .titleMedium
+                        .copy(color = MaterialTheme.colorScheme.primary),
                     modifier = Modifier.padding(start = 16.dp)
                 )
             }
@@ -369,11 +376,15 @@ fun BetterModalBottomSheet(
 @Preview
 @Composable
 fun PreviewScreenMain() {
-    Screen()
+    AppTheme {
+        Screen()
+    }
 }
 
 @Preview
 @Composable
 fun LanguageSettingsPreview() {
-    LanguageSettings(setShowBottomSheet = { })
+    AppTheme {
+        LanguageSettings(setShowBottomSheet = { })
+    }
 }

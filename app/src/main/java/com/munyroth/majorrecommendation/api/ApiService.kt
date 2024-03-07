@@ -3,6 +3,7 @@ package com.munyroth.majorrecommendation.api
 import com.munyroth.majorrecommendation.model.Major
 import com.munyroth.majorrecommendation.model.Recommendation
 import com.munyroth.majorrecommendation.model.ResData
+import com.munyroth.majorrecommendation.model.Token
 import com.munyroth.majorrecommendation.model.University
 import com.munyroth.majorrecommendation.request.RecommendationRequest
 import retrofit2.Response
@@ -36,4 +37,10 @@ interface ApiService {
     suspend fun getUniversityById(
         @Path("id") id: Int
     ): Response<ResData<University>>
+
+    // Endpoint for send fcm token
+    @POST("fcm-token")
+    suspend fun sendFcmToken(
+        @Body token: Token
+    ): Response<ResData<String>>
 }

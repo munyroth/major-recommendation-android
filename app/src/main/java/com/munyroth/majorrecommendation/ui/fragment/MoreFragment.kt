@@ -49,10 +49,7 @@ fun More(showBottomSheet: Boolean, setShowBottomSheet: (Boolean) -> Unit) {
                     )
                     Text(
                         modifier = Modifier.padding(start = 16.dp),
-                        style = MaterialTheme.typography.titleSmall
-                            .copy(
-                                color = Color.Gray
-                            ),
+                        style = MaterialTheme.typography.titleSmall,
                         text = stringResource(id = R.string.title_change_language),
                     )
                 }

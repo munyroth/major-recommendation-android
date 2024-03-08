@@ -299,9 +299,7 @@ fun LanguageSettings(
                 )
                 Text(
                     text = text.value,
-                    style = MaterialTheme.typography
-                        .titleMedium
-                        .copy(color = MaterialTheme.colorScheme.primary),
+                    style = MaterialTheme.typography.titleMedium,
                     modifier = Modifier.padding(start = 16.dp)
                 )
             }

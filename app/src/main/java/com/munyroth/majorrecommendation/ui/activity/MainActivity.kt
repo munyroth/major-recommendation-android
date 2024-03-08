@@ -14,65 +14,12 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.ColumnScope
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.asPaddingValues
-import androidx.compose.foundation.layout.displayCutout
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.navigationBars
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.selection.selectable
-import androidx.compose.foundation.selection.selectableGroup
-import androidx.compose.material3.BottomSheetDefaults
-import androidx.compose.material3.Button
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.ModalBottomSheet
-import androidx.compose.material3.NavigationBar
-import androidx.compose.material3.NavigationBarItem
-import androidx.compose.material3.RadioButton
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.SheetState
-import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.TopAppBarDefaults.topAppBarColors
-import androidx.compose.material3.contentColorFor
-import androidx.compose.material3.rememberModalBottomSheetState
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Shape
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.semantics.Role
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
 import androidx.core.os.LocaleListCompat
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.currentBackStackEntryAsState
-import androidx.navigation.compose.rememberNavController
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.messaging.FirebaseMessaging
 import com.munyroth.majorrecommendation.R
-import com.munyroth.majorrecommendation.ui.fragment.Home
-import com.munyroth.majorrecommendation.ui.fragment.More
+import com.munyroth.majorrecommendation.ui.screens.MainScreen
 import com.munyroth.majorrecommendation.ui.theme.AppTheme
 import com.munyroth.majorrecommendation.utility.AppPreference
 import com.munyroth.majorrecommendation.viewmodel.MainViewModel
@@ -125,7 +72,7 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             AppTheme {
-                Screen()
+                MainScreen()
             }
         }
     }
@@ -177,149 +124,6 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun Screen() {
-    val navController = rememberNavController()
-
-    val sheetState = rememberModalBottomSheetState()
-//    val scope = rememberCoroutineScope()
-    var showBottomSheet by remember { mutableStateOf(false) }
-
-    // Function to update showBottomSheet state
-    val setShowBottomSheet: (Boolean) -> Unit = { showBottomSheet = it }
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                colors = topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.primaryContainer,
-                    titleContentColor = MaterialTheme.colorScheme.primary,
-                ),
-                title = {
-                    Text(
-                        style = MaterialTheme.typography.titleLarge
-                            .copy(fontWeight = FontWeight.Bold),
-                        modifier = Modifier.fillMaxWidth(),
-                        textAlign = TextAlign.Start,
-                        text = stringResource(id = R.string.app_name),
-                    )
-                },
-                navigationIcon = {
-                    Image(
-                        modifier = Modifier.width(64.dp),
-                        painter = painterResource(id = R.drawable.ic_app),
-                        contentDescription = null,
-                    )
-                }
-            )
-        },
-        bottomBar = {
-            val items = listOf(
-                Screen.Home,
-                Screen.More
-            )
-
-            NavigationBar {
-                val navBackStackEntry = navController.currentBackStackEntryAsState()
-                val currentRoute = navBackStackEntry.value?.destination?.route
-
-                items.forEach { screen ->
-                    NavigationBarItem(
-                        icon = {
-                            Icon(
-                                painter = painterResource(id = screen.iconResId),
-                                contentDescription = null // Provide a proper content description
-                            )
-                        },
-                        label = { Text(stringResource(id = screen.label)) },
-                        selected = currentRoute == screen.route,
-                        onClick = {
-                            navController.navigate(screen.route) {
-                                launchSingleTop = true
-                                restoreState = true
-                            }
-                        }
-                    )
-                }
-            }
-        }
-    ) { innerPadding ->
-        NavHost(
-            navController,
-            startDestination = Screen.Home.route,
-            Modifier.padding(innerPadding)
-        ) {
-            composable(Screen.Home.route) { Home() }
-            composable(Screen.More.route) { More(showBottomSheet, setShowBottomSheet) }
-        }
-
-        BetterModalBottomSheet(
-            showSheet = showBottomSheet,
-            onDismissRequest = { showBottomSheet = false },
-            sheetState = sheetState
-        ) {
-            LanguageSettings(
-                setShowBottomSheet = setShowBottomSheet
-            )
-        }
-    }
-}
-
-@Composable
-fun LanguageSettings(
-    setShowBottomSheet: (Boolean) -> Unit,
-) {
-    val context = LocalContext.current
-    val languageCode = Locale.getDefault().language
-
-    val radioOptions = mapOf(
-        "km" to stringResource(id = R.string.khmer),
-        "en" to stringResource(id = R.string.english)
-    )
-
-    val (selectedOption, onOptionSelected) = remember { mutableStateOf(languageCode) }
-
-    Column(Modifier.selectableGroup()) {
-        radioOptions.forEach { text ->
-            Row(
-                Modifier
-                    .fillMaxWidth()
-                    .height(56.dp)
-                    .selectable(
-                        selected = (text.key == selectedOption),
-                        onClick = { onOptionSelected(text.key) },
-                        role = Role.RadioButton
-                    )
-                    .padding(horizontal = 16.dp),
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                RadioButton(
-                    selected = (text.key == selectedOption),
-                    onClick = null
-                )
-                Text(
-                    text = text.value,
-                    style = MaterialTheme.typography.titleMedium,
-                    modifier = Modifier.padding(start = 16.dp)
-                )
-            }
-        }
-
-        Button(
-            onClick = {
-                changeLocales(context, selectedOption)
-                setShowBottomSheet(false)
-            },
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(bottom = 32.dp)
-                .padding(horizontal = 16.dp)
-        ) {
-            Text(text = stringResource(id = R.string.save))
-        }
-    }
-}
-
 fun changeLocales(context: Context, localeString: String) {
     AppPreference.get(context).setLanguage(localeString)
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
@@ -327,62 +131,5 @@ fun changeLocales(context: Context, localeString: String) {
             .applicationLocales = LocaleList.forLanguageTags(localeString)
     } else {
         AppCompatDelegate.setApplicationLocales(LocaleListCompat.forLanguageTags(localeString))
-    }
-}
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun BetterModalBottomSheet(
-    showSheet: Boolean,
-    onDismissRequest: () -> Unit,
-    modifier: Modifier = Modifier,
-    sheetState: SheetState = rememberModalBottomSheetState(
-        skipPartiallyExpanded = true
-    ),
-    shape: Shape = BottomSheetDefaults.ExpandedShape,
-    containerColor: Color = BottomSheetDefaults.ContainerColor,
-    contentColor: Color = contentColorFor(containerColor),
-    tonalElevation: Dp = BottomSheetDefaults.Elevation,
-    scrimColor: Color = BottomSheetDefaults.ScrimColor,
-    dragHandle: @Composable (() -> Unit)? = { BottomSheetDefaults.DragHandle() },
-    windowInsets: WindowInsets = WindowInsets.displayCutout,
-    content: @Composable ColumnScope.() -> Unit,
-) {
-    val bottomPadding = WindowInsets.navigationBars.asPaddingValues().calculateBottomPadding()
-
-    if (showSheet) {
-        ModalBottomSheet(
-            onDismissRequest = onDismissRequest,
-            modifier = modifier,
-            sheetState = sheetState,
-            shape = shape,
-            containerColor = containerColor,
-            contentColor = contentColor,
-            tonalElevation = tonalElevation,
-            scrimColor = scrimColor,
-            dragHandle = dragHandle,
-            windowInsets = windowInsets
-        ) {
-            Column(modifier = Modifier.padding(bottom = bottomPadding)) {
-                content()
-            }
-        }
-    }
-}
-
-
-@Preview
-@Composable
-fun PreviewScreenMain() {
-    AppTheme {
-        Screen()
-    }
-}
-
-@Preview
-@Composable
-fun LanguageSettingsPreview() {
-    AppTheme {
-        LanguageSettings(setShowBottomSheet = { })
     }
 }

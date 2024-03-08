@@ -1,33 +1,19 @@
 package com.munyroth.majorrecommendation.ui.activity
 
-import android.content.Intent
-import com.munyroth.majorrecommendation.R
-import com.munyroth.majorrecommendation.databinding.ActivitySelectClassStudyBinding
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import com.munyroth.majorrecommendation.ui.screens.SelectClassStudyScreen
+import com.munyroth.majorrecommendation.ui.theme.AppTheme
 
-class SelectClassStudyActivity : BaseActivity<ActivitySelectClassStudyBinding>(
-    ActivitySelectClassStudyBinding::inflate
-) {
-    override fun initActions() {
-        supportActionBar?.apply {
-            title = getString(R.string.title_major_recommendation)
-            setDisplayHomeAsUpEnabled(true)
+class SelectClassStudyActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        setContent {
+            AppTheme {
+                SelectClassStudyScreen()
+            }
         }
     }
-
-    override fun setupListeners() {
-        binding.cardViewClassScience.setOnClickListener {
-            val activityInputSubjectScoreScience = Intent(this, InputSubjectScoreScienceActivity::class.java)
-            startActivity(activityInputSubjectScoreScience)
-        }
-
-        binding.cardViewClassSocial.setOnClickListener {
-            val activityInputSubjectScoreSocial = Intent(this, InputSubjectScoreSocialActivity::class.java)
-            startActivity(activityInputSubjectScoreSocial)
-        }
-    }
-
-    override fun setupObservers() {
-
-    }
-
 }

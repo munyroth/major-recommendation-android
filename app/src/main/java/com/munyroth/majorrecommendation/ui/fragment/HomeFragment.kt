@@ -1,6 +1,7 @@
 package com.munyroth.majorrecommendation.ui.fragment
 
 import android.content.Intent
+import android.content.res.Configuration
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -53,7 +54,10 @@ fun Home() {
             ),
             modifier = Modifier
                 .fillMaxWidth()
-                .height(64.dp)
+                .height(64.dp),
+            colors = CardDefaults.cardColors(
+                containerColor = MaterialTheme.colorScheme.background,
+            ),
         ) {
             Row(
                 verticalAlignment = Alignment.CenterVertically,
@@ -67,10 +71,7 @@ fun Home() {
                 Text(
                     text = stringResource(id = R.string.title_major_recommendation),
                     style = MaterialTheme.typography.titleMedium
-                        .copy(
-                            color = MaterialTheme.colorScheme.primary,
-                            fontWeight = FontWeight.Bold
-                        ),
+                        .copy(fontWeight = FontWeight.Bold),
                     modifier = Modifier.padding(start = 8.dp)
                 )
                 Spacer(modifier = Modifier.weight(1f))
@@ -96,7 +97,10 @@ fun Home() {
                     context.startActivity(intent)
                 },
                 modifier = Modifier
-                    .weight(1f)
+                    .weight(1f),
+                colors = CardDefaults.cardColors(
+                    containerColor = MaterialTheme.colorScheme.background,
+                ),
             ) {
                 Column(
                     modifier = Modifier
@@ -113,10 +117,7 @@ fun Home() {
                     Text(
                         text = stringResource(id = R.string.title_majors),
                         style = MaterialTheme.typography.titleMedium
-                            .copy(
-                                color = MaterialTheme.colorScheme.primary,
-                                fontWeight = FontWeight.Bold
-                            ),
+                            .copy(fontWeight = FontWeight.Bold),
                         modifier = Modifier.padding(top = 16.dp)
                     )
                 }
@@ -130,7 +131,10 @@ fun Home() {
                     context.startActivity(intent)
                 },
                 modifier = Modifier
-                    .weight(1f)
+                    .weight(1f),
+                colors = CardDefaults.cardColors(
+                    containerColor = MaterialTheme.colorScheme.background,
+                ),
             ) {
                 Column(
                     modifier = Modifier
@@ -147,10 +151,7 @@ fun Home() {
                     Text(
                         text = stringResource(id = R.string.title_universities),
                         style = MaterialTheme.typography.titleMedium
-                            .copy(
-                                color = MaterialTheme.colorScheme.primary,
-                                fontWeight = FontWeight.Bold
-                            ),
+                            .copy(fontWeight = FontWeight.Bold),
                         modifier = Modifier.padding(top = 16.dp)
                     )
                 }
@@ -160,6 +161,7 @@ fun Home() {
 }
 
 @Preview
+@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 fun HomePreview() {
     AppTheme {

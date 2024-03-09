@@ -2,6 +2,7 @@ package com.munyroth.majorrecommendation.ui.screens
 
 import android.app.Activity
 import android.content.Intent
+import android.content.res.Configuration
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -85,7 +86,10 @@ fun SelectClassStudyScreen() {
                     ),
                     modifier = Modifier
                         .fillMaxWidth()
-                        .height(64.dp)
+                        .height(64.dp),
+                    colors = CardDefaults.cardColors(
+                        containerColor = MaterialTheme.colorScheme.background,
+                    ),
                 ) {
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
@@ -99,10 +103,7 @@ fun SelectClassStudyScreen() {
                         Text(
                             text = stringResource(id = R.string.title_science),
                             style = MaterialTheme.typography.titleMedium
-                                .copy(
-                                    color = MaterialTheme.colorScheme.primary,
-                                    fontWeight = FontWeight.Bold
-                                ),
+                                .copy(fontWeight = FontWeight.Bold),
                             modifier = Modifier.padding(start = 8.dp)
                         )
                         Spacer(modifier = Modifier.weight(1f))
@@ -126,7 +127,10 @@ fun SelectClassStudyScreen() {
                     ),
                     modifier = Modifier
                         .fillMaxWidth()
-                        .height(64.dp)
+                        .height(64.dp),
+                    colors = CardDefaults.cardColors(
+                        containerColor = MaterialTheme.colorScheme.background,
+                    ),
                 ) {
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
@@ -140,10 +144,7 @@ fun SelectClassStudyScreen() {
                         Text(
                             text = stringResource(id = R.string.title_social),
                             style = MaterialTheme.typography.titleMedium
-                                .copy(
-                                    color = MaterialTheme.colorScheme.primary,
-                                    fontWeight = FontWeight.Bold
-                                ),
+                                .copy(fontWeight = FontWeight.Bold),
                             modifier = Modifier.padding(start = 8.dp)
                         )
                         Spacer(modifier = Modifier.weight(1f))
@@ -160,6 +161,7 @@ fun SelectClassStudyScreen() {
 }
 
 @Preview
+@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 fun SelectClassStudyPreview() {
     AppTheme {

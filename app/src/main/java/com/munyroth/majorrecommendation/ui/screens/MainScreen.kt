@@ -1,5 +1,6 @@
 package com.munyroth.majorrecommendation.ui.screens
 
+import android.content.res.Configuration
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -31,12 +32,16 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.munyroth.majorrecommendation.R
-import com.munyroth.majorrecommendation.ui.activity.Screen
 import com.munyroth.majorrecommendation.ui.components.BetterModalBottomSheet
 import com.munyroth.majorrecommendation.ui.components.LanguageSettings
 import com.munyroth.majorrecommendation.ui.fragment.Home
 import com.munyroth.majorrecommendation.ui.fragment.More
 import com.munyroth.majorrecommendation.ui.theme.AppTheme
+
+sealed class Screen(val route: String, val label: Int, val iconResId: Int) {
+    data object Home : Screen("home", R.string.title_home, R.drawable.ic_home)
+    data object More : Screen("more", R.string.title_more, R.drawable.ic_menu_dots)
+}
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -127,6 +132,7 @@ fun MainScreen() {
 }
 
 @Preview
+@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 fun PreviewScreenMain() {
     AppTheme {

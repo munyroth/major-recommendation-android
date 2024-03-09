@@ -2,33 +2,23 @@ package com.munyroth.majorrecommendation.ui.activity
 
 import android.Manifest
 import android.app.AlertDialog
-import android.app.LocaleManager
 import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
-import android.os.LocaleList
 import android.util.Log
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
-import androidx.core.os.LocaleListCompat
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.messaging.FirebaseMessaging
-import com.munyroth.majorrecommendation.R
 import com.munyroth.majorrecommendation.ui.screens.MainScreen
 import com.munyroth.majorrecommendation.ui.theme.AppTheme
 import com.munyroth.majorrecommendation.utility.AppPreference
 import com.munyroth.majorrecommendation.viewmodel.MainViewModel
 import java.util.Locale
-
-sealed class Screen(val route: String, val label: Int, val iconResId: Int) {
-    data object Home : Screen("home", R.string.title_home, R.drawable.ic_home)
-    data object More : Screen("more", R.string.title_more, R.drawable.ic_menu_dots)
-}
 
 class MainActivity : ComponentActivity() {
     private val mainViewModel = MainViewModel()
@@ -121,15 +111,5 @@ class MainActivity : ComponentActivity() {
                 requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
             }
         }
-    }
-}
-
-fun changeLocales(context: Context, localeString: String) {
-    AppPreference.get(context).setLanguage(localeString)
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-        context.getSystemService(LocaleManager::class.java)
-            .applicationLocales = LocaleList.forLanguageTags(localeString)
-    } else {
-        AppCompatDelegate.setApplicationLocales(LocaleListCompat.forLanguageTags(localeString))
     }
 }

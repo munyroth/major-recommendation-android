@@ -1,5 +1,10 @@
 package com.munyroth.majorrecommendation.ui.components
 
+import android.app.LocaleManager
+import android.content.Context
+import android.os.Build
+import android.os.LocaleList
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -21,10 +26,21 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.core.os.LocaleListCompat
 import com.munyroth.majorrecommendation.R
-import com.munyroth.majorrecommendation.ui.activity.changeLocales
 import com.munyroth.majorrecommendation.ui.theme.AppTheme
+import com.munyroth.majorrecommendation.utility.AppPreference
 import java.util.Locale
+
+fun changeLocales(context: Context, localeString: String) {
+    AppPreference.get(context).setLanguage(localeString)
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+        context.getSystemService(LocaleManager::class.java)
+            .applicationLocales = LocaleList.forLanguageTags(localeString)
+    } else {
+        AppCompatDelegate.setApplicationLocales(LocaleListCompat.forLanguageTags(localeString))
+    }
+}
 
 @Composable
 fun LanguageSettings(

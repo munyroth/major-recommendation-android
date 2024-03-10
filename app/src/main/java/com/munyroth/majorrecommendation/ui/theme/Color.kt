@@ -7,7 +7,11 @@ val LightGreen = Color(0xFF1E8449)
 val PaleGreen = Color(0xFFE9F7EF)
 val MintGreen = Color(0xFFEAFAF1)
 val PaleTeal = Color(0xFFD5F5E3)
+
+val Gray = Color(0x99000000)
+val LightGray = Color(0xFFD5D8DC)
 val SlateGray = Color(0xFF99A3A4)
+val DarkGray = Color(0xFF0D0D0D)
 
 val Purple80 = Color(0xFFD0BCFF)
 val PurpleGrey80 = Color(0xFFCCC2DC)

@@ -1,7 +1,7 @@
 package com.munyroth.majorrecommendation.viewmodel
 
 import android.util.Log
-import androidx.lifecycle.MutableLiveData
+import androidx.compose.runtime.MutableState
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.gson.Gson
@@ -15,20 +15,13 @@ import retrofit2.Response
 open class BaseViewModel : ViewModel() {
 
     inline fun <reified T> performApiCall(
-        response: MutableLiveData<ApiData<T>>,
+        response: MutableState<ApiData<T>>,
         crossinline call: suspend () -> Response<T>,
         crossinline onSuccess: (T) -> ApiData<T> = { data -> ApiData(Status.SUCCESS, data) },
         crossinline onError: (Response<T>) -> ApiData<T> = { ApiData(Status.ERROR, null) }
     ) {
         // Initial response data with Processing status
         var responseData: ApiData<T>
-
-        // Check if the response LiveData already has a value
-        response.value?.let {
-            // If yes, set LoadingMore status and update the LiveData
-            responseData = ApiData(Status.LOADING_MORE, it.data)
-            response.postValue(responseData)
-        } ?: response.postValue(ApiData(Status.LOADING, null)) // If no, set Processing status
 
         // Launch a coroutine in the IO dispatcher
         viewModelScope.launch(Dispatchers.IO) {
@@ -64,7 +57,7 @@ open class BaseViewModel : ViewModel() {
                 ApiData(Status.ERROR, null)
             }
 
-            withContext(Dispatchers.Main.immediate) {
+            withContext(Dispatchers.Main) {
                 response.value = responseData
             }
         }

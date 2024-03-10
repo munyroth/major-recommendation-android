@@ -2,6 +2,7 @@ package com.munyroth.majorrecommendation.ui.components
 
 import android.app.LocaleManager
 import android.content.Context
+import android.content.res.Configuration
 import android.os.Build
 import android.os.LocaleList
 import androidx.appcompat.app.AppCompatDelegate
@@ -98,6 +99,7 @@ fun LanguageSettings(
 }
 
 @Preview
+@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 fun LanguageSettingsPreview() {
     AppTheme {

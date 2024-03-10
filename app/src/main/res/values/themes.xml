@@ -1,82 +1,21 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!-- Base application theme. -->
-    <style name="Theme.MajorRecommendation" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
-        <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/primary</item>
-        <item name="colorPrimaryVariant">@color/primary_light</item>
-        <item name="colorOnPrimary">@color/white</item>
-        <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/primary</item>
-        <item name="colorSecondaryVariant">@color/primary_light</item>
-        <item name="colorOnSecondary">@color/black</item>
+    <style name="Theme.MajorRecommendation" parent="android:Theme.Material.Light.NoActionBar" />
 
-        <!-- Status bar color. -->
-        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+    <style name="Theme.App.Starting" parent="Theme.SplashScreen">
+        <!-- Set the splash screen background, animated icon, and animation
+        duration. -->
+        <item name="windowSplashScreenBackground">@color/pale_green</item>
 
-        <!-- Button style. -->
-        <item name="materialButtonStyle">@style/ButtonStyle</item>
-    </style>
+        <!-- Use windowSplashScreenAnimatedIcon to add a drawable or an animated
+             drawable. One of these is required. -->
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_app</item>
 
-<!--    <style name="Theme.App.Starting" parent="Theme.SplashScreen">-->
-<!--        &lt;!&ndash; Set the splash screen background, animated icon, and animation-->
-<!--        duration. &ndash;&gt;-->
-<!--        <item name="windowSplashScreenBackground">@color/grey</item>-->
+        <!-- Required for animated icons. -->
+        <!--        <item name="windowSplashScreenAnimationDuration">1000</item>-->
 
-<!--        &lt;!&ndash; Use windowSplashScreenAnimatedIcon to add a drawable or an animated-->
-<!--             drawable. One of these is required. &ndash;&gt;-->
-<!--        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_app</item>-->
-
-<!--        &lt;!&ndash; Required for animated icons. &ndash;&gt;-->
-<!--        &lt;!&ndash;        <item name="windowSplashScreenAnimationDuration">1000</item>&ndash;&gt;-->
-
-<!--        &lt;!&ndash; Set the theme of the Activity that directly follows your splash-->
-<!--        screen. This is required. &ndash;&gt;-->
-<!--        <item name="postSplashScreenTheme">@style/Theme.MajorRecommendation</item>-->
-<!--    </style>-->
-
-    <!-- ShapeAppearanceOverlay Style -->
-    <style name="ShapeAppearanceOverlay.App.CornerSize10Percent" parent="">
-        <item name="cornerSize">10%</item>
-    </style>
-
-    <!-- Bottom Navigation -->
-    <style name="BottomNavigation" >
-        <item name="itemBackground">@color/white</item>
-        <item name="itemIconTint">@color/black</item>
-        <item name="itemTextColor">@color/black</item>
-    </style>
-
-    <!-- CardView Style -->
-    <style name="CardViewStyle">
-        <item name="cardBackgroundColor">@color/white</item>
-        <item name="cardCornerRadius">12dp</item>
-        <item name="cardPreventCornerOverlap">true</item>
-        <item name="cardUseCompatPadding">true</item>
-    </style>
-
-    <!-- Button Style -->
-    <style name="ButtonStyle" parent="Widget.MaterialComponents.Button">
-        <item name="android:paddingHorizontal">32dp</item>
-        <item name="android:paddingVertical">8dp</item>
-        <item name="android:textSize">16sp</item>
-        <item name="android:textAllCaps">false</item>
-        <item name="android:background">@drawable/bg_button</item>
-    </style>
-
-    <!-- TextInputLayout Style -->
-    <style name="OutlinedBoxTextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-        <item name="boxCornerRadiusBottomStart">8dp</item>
-        <item name="boxCornerRadiusBottomEnd">8dp</item>
-        <item name="boxCornerRadiusTopStart">8dp</item>
-        <item name="boxCornerRadiusTopEnd">8dp</item>
-    </style>
-
-    <!-- TextView Style -->
-    <style name="MainTextStyle">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:textColor">@color/primary</item>
-        <item name="android:textSize">20sp</item>
-        <item name="android:textStyle">bold</item>
+        <!-- Set the theme of the Activity that directly follows your splash
+        screen. This is required. -->
+        <item name="postSplashScreenTheme">@style/Theme.MajorRecommendation</item>
     </style>
 </resources>

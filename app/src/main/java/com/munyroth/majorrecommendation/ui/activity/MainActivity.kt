@@ -15,7 +15,7 @@ import androidx.core.content.ContextCompat
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.messaging.FirebaseMessaging
 import com.munyroth.majorrecommendation.ui.screens.MainScreen
-import com.munyroth.majorrecommendation.ui.theme.AppTheme
+import com.munyroth.majorrecommendation.ui.theme.MainAppTheme
 import com.munyroth.majorrecommendation.utility.AppPreference
 import com.munyroth.majorrecommendation.viewmodel.MainViewModel
 import java.util.Locale
@@ -61,7 +61,7 @@ class MainActivity : ComponentActivity() {
         askNotificationPermission()
 
         setContent {
-            AppTheme {
+            MainAppTheme {
                 MainScreen()
             }
         }

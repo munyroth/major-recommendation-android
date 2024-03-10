@@ -7,6 +7,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -26,6 +27,7 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -46,10 +48,6 @@ fun SelectClassStudyScreen() {
     Scaffold(
         topBar = {
             TopAppBar(
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.primaryContainer,
-                    titleContentColor = MaterialTheme.colorScheme.primary,
-                ),
                 title = {
                     Text(
                         style = MaterialTheme.typography.titleLarge
@@ -73,7 +71,9 @@ fun SelectClassStudyScreen() {
         }
     ) { innerPadding ->
         Column(
-            modifier = Modifier.padding(innerPadding)
+            modifier = Modifier
+                .padding(innerPadding)
+                .fillMaxSize()
         ) {
             Column(modifier = Modifier.padding(16.dp)) {
                 ElevatedCard(
@@ -88,7 +88,7 @@ fun SelectClassStudyScreen() {
                         .fillMaxWidth()
                         .height(64.dp),
                     colors = CardDefaults.cardColors(
-                        containerColor = MaterialTheme.colorScheme.background,
+                        containerColor = MaterialTheme.colorScheme.tertiary,
                     ),
                 ) {
                     Row(
@@ -110,7 +110,8 @@ fun SelectClassStudyScreen() {
                         Image(
                             painter = painterResource(id = R.drawable.ic_angle_small_right),
                             contentDescription = null,
-                            modifier = Modifier.size(32.dp)
+                            modifier = Modifier.size(32.dp),
+                            colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSecondary)
                         )
                     }
                 }
@@ -129,7 +130,7 @@ fun SelectClassStudyScreen() {
                         .fillMaxWidth()
                         .height(64.dp),
                     colors = CardDefaults.cardColors(
-                        containerColor = MaterialTheme.colorScheme.background,
+                        containerColor = MaterialTheme.colorScheme.tertiary,
                     ),
                 ) {
                     Row(
@@ -151,7 +152,8 @@ fun SelectClassStudyScreen() {
                         Image(
                             painter = painterResource(id = R.drawable.ic_angle_small_right),
                             contentDescription = null,
-                            modifier = Modifier.size(32.dp)
+                            modifier = Modifier.size(32.dp),
+                            colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSecondary)
                         )
                     }
                 }

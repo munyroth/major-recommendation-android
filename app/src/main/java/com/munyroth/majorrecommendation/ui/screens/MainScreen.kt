@@ -13,7 +13,6 @@ import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -36,7 +35,7 @@ import com.munyroth.majorrecommendation.ui.components.BetterModalBottomSheet
 import com.munyroth.majorrecommendation.ui.components.LanguageSettings
 import com.munyroth.majorrecommendation.ui.fragment.Home
 import com.munyroth.majorrecommendation.ui.fragment.More
-import com.munyroth.majorrecommendation.ui.theme.AppTheme
+import com.munyroth.majorrecommendation.ui.theme.MainAppTheme
 
 sealed class Screen(val route: String, val label: Int, val iconResId: Int) {
     data object Home : Screen("home", R.string.title_home, R.drawable.ic_home)
@@ -57,10 +56,6 @@ fun MainScreen() {
     Scaffold(
         topBar = {
             TopAppBar(
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.primaryContainer,
-                    titleContentColor = MaterialTheme.colorScheme.primary,
-                ),
                 title = {
                     Text(
                         style = MaterialTheme.typography.titleLarge
@@ -135,7 +130,7 @@ fun MainScreen() {
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 fun PreviewScreenMain() {
-    AppTheme {
+    MainAppTheme {
         MainScreen()
     }
 }

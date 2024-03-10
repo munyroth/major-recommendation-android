@@ -14,6 +14,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -24,8 +25,7 @@ import com.munyroth.majorrecommendation.ui.theme.AppTheme
 @Composable
 fun More(showBottomSheet: Boolean, setShowBottomSheet: (Boolean) -> Unit) {
     LazyColumn(
-        modifier = Modifier
-            .fillMaxSize(),
+        modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         item {
@@ -44,7 +44,8 @@ fun More(showBottomSheet: Boolean, setShowBottomSheet: (Boolean) -> Unit) {
                 ) {
                     Image(
                         painterResource(R.drawable.ic_language),
-                        contentDescription = "Localized description"
+                        contentDescription = null,
+                        colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSecondary)
                     )
                     Text(
                         modifier = Modifier.padding(start = 16.dp),
@@ -54,7 +55,8 @@ fun More(showBottomSheet: Boolean, setShowBottomSheet: (Boolean) -> Unit) {
                 }
                 Image(
                     painterResource(R.drawable.ic_angle_small_right),
-                    contentDescription = "Localized description"
+                    contentDescription = null,
+                    colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSecondary)
                 )
             }
         }

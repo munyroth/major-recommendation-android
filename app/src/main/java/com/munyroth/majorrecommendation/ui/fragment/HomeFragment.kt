@@ -20,6 +20,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -56,7 +57,7 @@ fun Home() {
                 .fillMaxWidth()
                 .height(64.dp),
             colors = CardDefaults.cardColors(
-                containerColor = MaterialTheme.colorScheme.background,
+                containerColor = MaterialTheme.colorScheme.tertiary,
             ),
         ) {
             Row(
@@ -78,7 +79,8 @@ fun Home() {
                 Image(
                     painter = painterResource(id = R.drawable.ic_angle_small_right),
                     contentDescription = null,
-                    modifier = Modifier.size(32.dp)
+                    modifier = Modifier.size(32.dp),
+                    colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSecondary)
                 )
             }
         }
@@ -99,7 +101,7 @@ fun Home() {
                 modifier = Modifier
                     .weight(1f),
                 colors = CardDefaults.cardColors(
-                    containerColor = MaterialTheme.colorScheme.background,
+                    containerColor = MaterialTheme.colorScheme.tertiary,
                 ),
             ) {
                 Column(
@@ -133,7 +135,7 @@ fun Home() {
                 modifier = Modifier
                     .weight(1f),
                 colors = CardDefaults.cardColors(
-                    containerColor = MaterialTheme.colorScheme.background,
+                    containerColor = MaterialTheme.colorScheme.tertiary,
                 ),
             ) {
                 Column(

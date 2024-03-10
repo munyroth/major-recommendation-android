@@ -20,8 +20,8 @@ android {
         applicationId = "com.munyroth.majorrecommendation"
         minSdk = 30
         targetSdk = 34
-        versionCode = 5
-        versionName = "1.4"
+        versionCode = 6
+        versionName = "2.0"
         buildConfigField("String", "BASE_URL", "\"https://major.furniturestores.me/api/\"")
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -108,6 +108,13 @@ android {
 
 dependencies {
 
+    // Kotlin
+    implementation("androidx.core:core-ktx:1.12.0")
+    // Splash screen
+    implementation("androidx.core:core-splashscreen:1.0.1")
+    // AppCompat
+    implementation("androidx.appcompat:appcompat:1.6.1")
+
     // Jetpack Compose
     val composeBom = platform("androidx.compose:compose-bom:2024.02.01")
     implementation(composeBom)
@@ -129,18 +136,10 @@ dependencies {
     // Integration with Navigation
     implementation("androidx.navigation:navigation-compose:2.7.7")
 
-    implementation("androidx.core:core-ktx:1.12.0")
-    implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("com.google.android.material:material:1.11.0")
+    // Coil for image loading
+    implementation("io.coil-kt:coil-compose:2.6.0")
 
-    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.7.0")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
-    implementation("androidx.navigation:navigation-fragment-ktx:2.7.7")
-    implementation("androidx.navigation:navigation-ui-ktx:2.7.7")
-    implementation("androidx.core:core-splashscreen:1.0.1")
-
-    implementation("com.squareup.picasso:picasso:2.71828")
+    // Retrofit for network requests
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
 

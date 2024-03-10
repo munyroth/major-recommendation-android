@@ -1,4 +1,4 @@
-package com.munyroth.majorrecommendation.ui.screens
+package com.munyroth.majorrecommendation.ui.components
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -55,7 +55,7 @@ fun ScoreInputField(label: String, maxScore: Int, onScoreChanged: (Float) -> Uni
         trailingIcon = {
             Text(
                 text = "/$maxScore",
-                color = Color.Black,
+                color = Color.DarkGray,
                 modifier = Modifier.padding(end = 16.dp)
             )
         }

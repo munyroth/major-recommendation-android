@@ -20,4 +20,11 @@ class UniversityViewModel : BaseViewModel(){
             call = { RetrofitInstance.get().api.getUniversities(search) }
         )
     }
+
+    // Search universities
+    fun searchUniversities(search : String): List<University> {
+        return universities.value.data?.data?.filter {
+            it.nameEn.contains(search, true)
+        } ?: emptyList()
+    }
 }

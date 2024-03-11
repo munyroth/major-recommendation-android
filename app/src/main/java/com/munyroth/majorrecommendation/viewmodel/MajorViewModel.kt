@@ -8,16 +8,23 @@ import com.munyroth.majorrecommendation.model.Major
 import com.munyroth.majorrecommendation.model.ResData
 import com.munyroth.majorrecommendation.model.Status
 
-class MajorViewModel : BaseViewModel(){
+class MajorViewModel : BaseViewModel() {
     // LiveData
     private val _majors = mutableStateOf(ApiData<ResData<List<Major>>>(Status.LOADING, null))
     val majors: MutableState<ApiData<ResData<List<Major>>>> = _majors
 
     // Load majors
-    fun loadMajors(search : String? = null) {
+    fun loadMajors(search: String? = null) {
         performApiCall(
             response = _majors,
             call = { RetrofitInstance.get().api.getMajors(search) }
         )
+    }
+
+    // Search majors
+    fun searchMajors(search: String): List<Major> {
+        return _majors.value.data?.data?.filter {
+            it.major.contains(search, true)
+        } ?: emptyList()
     }
 }

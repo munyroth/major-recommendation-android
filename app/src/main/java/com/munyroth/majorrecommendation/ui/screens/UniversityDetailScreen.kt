@@ -15,8 +15,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -205,7 +203,19 @@ fun UniversityDetailScreen(
             style = MaterialTheme.typography.titleMedium
         )
 
-        FacultyList(faculties = university.faculties ?: emptyList())
+        university.faculties?.forEach { faculty ->
+            Text(
+                text = faculty.nameEn,
+                style = MaterialTheme.typography.labelLarge
+            )
+            faculty.departments.forEach { department ->
+                Text(
+                    color = MaterialTheme.colorScheme.onSecondary,
+                    text = department.nameEn,
+                    style = MaterialTheme.typography.labelLarge
+                )
+            }
+        }
     }
 }
 
@@ -235,25 +245,6 @@ fun ContactItem(
     }
 }
 
-@Composable
-fun FacultyList(faculties: List<Faculty>) {
-    LazyColumn {
-        items(faculties) { faculty ->
-            Text(
-                text = faculty.nameEn,
-                style = MaterialTheme.typography.labelLarge
-            )
-            faculty.departments.forEach { department ->
-                Text(
-                    color = MaterialTheme.colorScheme.onSecondary,
-                    text = department.nameEn,
-                    style = MaterialTheme.typography.labelLarge
-                )
-            }
-        }
-    }
-}
-
 @Preview
 @Composable
 fun UniversityDetailScreenPreview() {
@@ -276,7 +267,7 @@ fun UniversityDetailContentPreview() {
                 nameEn = "Royal University of Phnom Penh",
                 universityType = "Private",
                 aboutKm = "សាកលវិទ្យាល័យភូមិន្ទភ្នំពេញ (RUPP) ត្រូវបានបង្កើតឡើងក្នុងឆ្នាំ 1960 បានឆ្លងកាត់ការផ្លាស់ប្តូរជាបន្តបន្ទាប់ ដើម្បីក្លាយជាសាកលវិទ្យាល័យជាតិឈានមុខគេនៅកម្ពុជា។ ការផ្លាស់ប្តូរផ្សេងទៀតនៅតែកើតឡើង។ ជាឧទាហរណ៍ ក្នុងរយៈពេលប្រាំឆ្នាំចុងក្រោយនេះ RUPP មានការរីកចម្រើនគួរឱ្យកត់សម្គាល់ក្នុងវិស័យជាច្រើន រួមទាំងរចនាសម្ព័ន្ធអង្គការ ការគ្រប់គ្រងស្ថាប័ន ការកសាងសមត្ថភាព ការអភិវឌ្ឍន៍ហេដ្ឋារចនាសម្ព័ន្ធ ការស្រាវជ្រាវ ការបង្រៀន និងការសិក្សា ការអភិវឌ្ឍន៍កម្មវិធីសិក្សា និងការធានាគុណភាព។ សមិទ្ធិផលទាំងនេះបានលើកទឹកចិត្តដល់គណៈគ្រប់គ្រង និងមហាវិទ្យាល័យរបស់ RUPP ឱ្យខិតខំអនុវត្តកំណែទម្រង់ស្ថាប័ន និងសម្រេចបាននូវគោលដៅអភិវឌ្ឍន៍។",
-                aboutEn = "aboutEn=The Royal University of Phnom Penh (RUPP), founded in 1960, has undergone a series of transformations to become the leading national university in Cambodia. Other transformations are still happening. In the last five years, for example, RUPP has made considerable progresses in many areas including organizational structure, institutional governance, capacity building, infrastructure development, research, teaching and learning, curriculum development, and quality assurance. These achievements have encouraged RUPP management and faculty to strive harder to implement the institutional reform and achieve development goals.",
+                aboutEn = "The Royal University of Phnom Penh (RUPP), founded in 1960, has undergone a series of transformations to become the leading national university in Cambodia. Other transformations are still happening. In the last five years, for example, RUPP has made considerable progresses in many areas including organizational structure, institutional governance, capacity building, infrastructure development, research, teaching and learning, curriculum development, and quality assurance. These achievements have encouraged RUPP management and faculty to strive harder to implement the institutional reform and achieve development goals.",
                 logo = "https://munyroth.me/logo.png",
                 phone = "12345678",
                 email = "2820.muny.roth@rupp.edu.kh",

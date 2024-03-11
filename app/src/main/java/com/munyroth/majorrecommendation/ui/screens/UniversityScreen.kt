@@ -1,7 +1,7 @@
 package com.munyroth.majorrecommendation.ui.screens
 
 import android.app.Activity
-import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -78,7 +78,7 @@ fun UniversityScreen(
             )
         }
     ) { innerPadding ->
-        Box(
+        Column(
             modifier = Modifier
                 .padding(innerPadding)
                 .fillMaxSize()
@@ -87,7 +87,7 @@ fun UniversityScreen(
 
             BetterSearchBar(
                 modifier = Modifier
-                    .padding(16.dp)
+                    .padding(horizontal = 16.dp)
                     .fillMaxWidth(),
                 onSearch = { query ->
                     universities = universityViewModel.searchUniversities(query)
@@ -118,7 +118,6 @@ fun UniversityContent(universities: ApiData<ResData<List<University>>>) {
             LazyColumn(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(top = 80.dp)
             ) {
                 items(universities.data?.data ?: emptyList()) { item ->
                     UniversityViewHolder(university = item)

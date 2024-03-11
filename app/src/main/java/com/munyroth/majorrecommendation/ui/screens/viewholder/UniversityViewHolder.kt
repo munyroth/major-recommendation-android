@@ -34,7 +34,6 @@ fun UniversityViewHolder(
     val context = LocalContext.current
     Row(
         modifier = Modifier
-            .padding(horizontal = 16.dp, vertical = 8.dp)
             .fillMaxWidth()
             .clickable {
                 val intent = Intent(context, UniversityDetailActivity::class.java)
@@ -42,14 +41,15 @@ fun UniversityViewHolder(
                 intent.putExtra("university_name", university.nameEn)
                 intent.putExtra("university_logo", university.logo)
                 context.startActivity(intent)
-            }
-        ,
+            },
         verticalAlignment = Alignment.CenterVertically
     ) {
         AsyncImage(
             model = university.logo,
             contentDescription = null,
-            modifier = Modifier.size(64.dp)
+            modifier = Modifier
+                .size(64.dp)
+                .padding(start = 16.dp),
         )
 
         Column(
@@ -66,9 +66,11 @@ fun UniversityViewHolder(
         }
 
         Image(
+            modifier = Modifier
+                .size(40.dp)
+                .padding(end = 16.dp),
             painter = painterResource(id = R.drawable.ic_angle_small_right),
             contentDescription = null,
-            modifier = Modifier.size(32.dp),
             colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSecondary)
         )
     }

@@ -1,7 +1,6 @@
 package com.munyroth.majorrecommendation.ui.screens
 
 import android.app.Activity
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -79,7 +78,7 @@ fun MajorScreen(
             )
         }
     ) { innerPadding ->
-        Box(
+        Column(
             modifier = Modifier
                 .padding(innerPadding)
                 .fillMaxSize()
@@ -88,7 +87,7 @@ fun MajorScreen(
 
             BetterSearchBar(
                 modifier = Modifier
-                    .padding(16.dp)
+                    .padding(horizontal = 16.dp)
                     .fillMaxWidth(),
                 onSearch = { query ->
                     majors = majorViewModel.searchMajors(query)
@@ -117,7 +116,6 @@ fun MajorContent(majors: ApiData<ResData<List<Major>>>) {
             LazyColumn(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(top = 80.dp)
             ) {
                 items(majors.data?.data ?: emptyList()) { item ->
                     MajorViewHolder(major = item)

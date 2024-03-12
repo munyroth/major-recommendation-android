@@ -1,6 +1,5 @@
 package com.munyroth.majorrecommendation.ui.screens
 
-import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import androidx.compose.foundation.Image
@@ -17,15 +16,8 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
@@ -33,8 +25,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -47,50 +38,25 @@ import com.munyroth.majorrecommendation.model.Faculty
 import com.munyroth.majorrecommendation.model.ResData
 import com.munyroth.majorrecommendation.model.Status
 import com.munyroth.majorrecommendation.model.University
+import com.munyroth.majorrecommendation.ui.components.BetterScaffold
 import com.munyroth.majorrecommendation.ui.components.DisplayError
 import com.munyroth.majorrecommendation.ui.components.DisplayLoading
 import com.munyroth.majorrecommendation.ui.components.ExpandableText
 import com.munyroth.majorrecommendation.ui.theme.AppTheme
 import com.munyroth.majorrecommendation.viewmodel.UniversityDetailViewModel
+import java.util.Locale
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun UniversityDetailScreen(
     id: Int,
     name: String,
     universityDetailViewModel: UniversityDetailViewModel = viewModel()
 ) {
-    val context = LocalContext.current
-
     LaunchedEffect(Unit) {
         universityDetailViewModel.loadUniversity(id = id)
     }
 
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                title = {
-                    Text(
-                        style = MaterialTheme.typography.titleLarge
-                            .copy(fontWeight = FontWeight.Bold),
-                        modifier = Modifier.fillMaxWidth(),
-                        textAlign = TextAlign.Start,
-                        text = name,
-                    )
-                },
-                navigationIcon = {
-                    IconButton(onClick = {
-                        (context as? Activity)?.finish()
-                    }) {
-                        Icon(
-                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                            contentDescription = null
-                        )
-                    }
-                },
-            )
-        }
-    ) { innerPadding ->
+    BetterScaffold(title = name) { innerPadding ->
         Box(
             modifier = Modifier
                 .padding(innerPadding)
@@ -141,7 +107,6 @@ fun UniversityDetailScreen(
         Column(
             modifier = Modifier
                 .padding(top = 16.dp)
-                .padding(horizontal = 16.dp)
                 .fillMaxWidth(),
             verticalArrangement = Arrangement.spacedBy(8.dp),
             horizontalAlignment = Alignment.CenterHorizontally
@@ -153,7 +118,7 @@ fun UniversityDetailScreen(
             )
 
             Text(
-                text = university.nameEn,
+                text = if (Locale.getDefault().language == "km") university.nameKm else university.nameEn,
                 style = MaterialTheme.typography.titleLarge,
                 overflow = TextOverflow.Ellipsis,
                 maxLines = 1
@@ -172,9 +137,9 @@ fun UniversityDetailScreen(
             )
         }
 
-
         Text(
-            text = "Contact",
+            modifier = Modifier.padding(top = 16.dp),
+            text = stringResource(id = R.string.label_contact),
             style = MaterialTheme.typography.titleMedium
         )
 
@@ -204,19 +169,21 @@ fun UniversityDetailScreen(
         )
 
         Text(
-            text = "Faculty",
+            modifier = Modifier.padding(top = 16.dp),
+            text = stringResource(id = R.string.label_faculty),
             style = MaterialTheme.typography.titleMedium
         )
 
         university.faculties?.forEach { faculty ->
             Text(
-                text = faculty.nameEn,
+                modifier = Modifier.padding(top = 8.dp),
+                text = if (Locale.getDefault().language == "km") faculty.nameKm else faculty.nameEn,
                 style = MaterialTheme.typography.labelLarge
             )
             faculty.departments.forEach { department ->
                 Text(
                     color = MaterialTheme.colorScheme.onSecondary,
-                    text = department.nameEn,
+                    text = if (Locale.getDefault().language == "km") department.nameKm else department.nameEn,
                     style = MaterialTheme.typography.labelLarge
                 )
             }

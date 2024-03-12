@@ -1,5 +1,7 @@
 package com.munyroth.majorrecommendation.ui.components
 
+import androidx.compose.animation.animateContentSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Search
@@ -27,7 +29,12 @@ fun BetterSearchBar(
     var isClear by remember { mutableStateOf(false) }
 
     SearchBar(
-        modifier = modifier,
+        modifier = modifier
+            .animateContentSize()
+            .then(
+                if (isActive) Modifier.fillMaxWidth()
+                else Modifier.fillMaxWidth(0.9F)
+            ),
         query = query,
         onQueryChange = {
             query = it

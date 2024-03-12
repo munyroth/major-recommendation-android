@@ -9,6 +9,7 @@
     <string name="title_account">Account</string>
 
     <string name="title_change_language">Change Language</string>
+    <string name="title_change_theme">Change Theme</string>
 
     <string name="title_major_recommendation">Major Recommendation</string>
     <string name="title_majors">Majors</string>
@@ -24,4 +25,12 @@
     <string name="next">Next</string>
     <string name="finish">Finish</string>
     <string name="save">Save</string>
+    <string name="system">System</string>
+    <string name="light">Light</string>
+    <string name="dark">Dark</string>
+    <string name="ok">Okay</string>
+    <string name="change_language">Change Language</string>
+    <string name="change_language_message">Changing the language will restart the app. Are you sure you want to change the language?</string>
+    <string name="dismise">Dimiss</string>
+    <string name="confirm">Confirm</string>
 </resources>

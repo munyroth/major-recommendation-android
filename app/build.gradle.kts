@@ -20,14 +20,17 @@ android {
         applicationId = "com.munyroth.majorrecommendation"
         minSdk = 30
         targetSdk = 34
-        versionCode = 6
-        versionName = "2.0"
+        versionCode = 7
+        versionName = "2.1"
         buildConfigField("String", "BASE_URL", "\"https://major.furniturestores.me/api/\"")
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             useSupportLibrary = true
         }
+
+        resourceConfigurations += "km"
+        resourceConfigurations += "en"
     }
 
     flavorDimensions.add("MajorRecommendation")
@@ -144,7 +147,7 @@ dependencies {
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
 
     // Import the BoM for the Firebase platform
-    implementation(platform("com.google.firebase:firebase-bom:32.7.3"))
+    implementation(platform("com.google.firebase:firebase-bom:32.7.4"))
 
     // Add the dependencies for the Crashlytics and Analytics libraries
     implementation("com.google.firebase:firebase-crashlytics")

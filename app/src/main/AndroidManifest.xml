@@ -12,12 +12,13 @@
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:localeConfig="@xml/locales_config"
         android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MajorRecommendation"
         android:windowSoftInputMode="adjustResize"
-        tools:targetApi="31">
+        tools:targetApi="tiramisu">
         <meta-data
             android:name="firebase_performance_logcat_enabled"
             android:value="true" />
@@ -51,6 +52,9 @@
         <activity
             android:name=".ui.activity.UniversityDetailActivity"
             android:exported="false" />
+        <activity
+            android:name=".ui.activity.StartActivity"
+            android:exported="false" />
 
         <service
             android:name=".service.MyFirebaseMessagingService"
@@ -58,6 +62,14 @@
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
+        </service>
+        <service
+            android:name="androidx.appcompat.app.AppLocalesMetadataHolderService"
+            android:enabled="false"
+            android:exported="false">
+            <meta-data
+                android:name="autoStoreLocales"
+                android:value="true" />
         </service>
     </application>
 

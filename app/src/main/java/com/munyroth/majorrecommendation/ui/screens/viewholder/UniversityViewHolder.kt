@@ -26,19 +26,25 @@ import com.munyroth.majorrecommendation.model.Faculty
 import com.munyroth.majorrecommendation.model.University
 import com.munyroth.majorrecommendation.ui.activity.UniversityDetailActivity
 import com.munyroth.majorrecommendation.ui.theme.AppTheme
+import java.util.Locale
 
 @Composable
 fun UniversityViewHolder(
     university: University,
 ) {
     val context = LocalContext.current
+    val languageCode = Locale.getDefault().language
+
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .clickable {
                 val intent = Intent(context, UniversityDetailActivity::class.java)
                 intent.putExtra("university_id", university.id)
-                intent.putExtra("university_name", university.nameEn)
+                intent.putExtra(
+                    "university_name",
+                    if (languageCode == "km") university.nameKm else university.nameEn
+                )
                 intent.putExtra("university_logo", university.logo)
                 context.startActivity(intent)
             },
@@ -59,7 +65,7 @@ fun UniversityViewHolder(
             verticalArrangement = Arrangement.Center
         ) {
             Text(
-                text = university.nameEn,
+                text = if (languageCode == "km") university.nameKm else university.nameEn,
                 textAlign = TextAlign.Start,
                 style = MaterialTheme.typography.titleMedium
             )

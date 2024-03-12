@@ -2,6 +2,7 @@ package com.munyroth.majorrecommendation.ui.theme
 
 import android.app.Activity
 import android.os.Build
+import android.util.Log
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
@@ -17,6 +18,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.unit.dp
 import androidx.core.view.WindowCompat
+import com.munyroth.majorrecommendation.model.enums.AppThemeEnum
+import com.munyroth.majorrecommendation.utility.AppPreference
 
 private val DarkColorScheme = darkColorScheme(
     primary = DarkGreen,
@@ -36,7 +39,7 @@ private val DarkColorScheme = darkColorScheme(
     onBackground = Color.White,
 
     surface = DarkGray,
-    onSurface = DarkGreen,
+    onSurface = Color.White,
     surfaceVariant = DarkGreen,
     onSurfaceVariant = Color.White,
 )
@@ -48,7 +51,7 @@ private val LightColorScheme = lightColorScheme(
     onPrimaryContainer = Color.Black,
 
     secondary = DarkGreen,
-    onSecondary = Gray,
+    onSecondary = Black99,
     secondaryContainer = DarkGreen,
     onSecondaryContainer = Color.White,
 
@@ -61,12 +64,21 @@ private val LightColorScheme = lightColorScheme(
     surface = PaleGreen,
     onSurface = DarkGreen,
     surfaceVariant = DarkGreen,
-    onSurfaceVariant = Gray,
+    onSurfaceVariant = Black99,
 )
 
 @Composable
 fun AppTheme(
-    darkTheme: Boolean = isSystemInDarkTheme(),
+    darkTheme: Boolean = run {
+        val context = LocalContext.current
+        val isDark = when (AppPreference.get(context).getTheme()) {
+            AppThemeEnum.SYSTEM -> isSystemInDarkTheme()
+            AppThemeEnum.LIGHT -> false
+            AppThemeEnum.DARK -> true
+        }
+
+        isDark
+    },
     // Dynamic color is available on Android 12+
     dynamicColor: Boolean = false,
     content: @Composable () -> Unit
@@ -99,27 +111,49 @@ fun AppTheme(
 
 @Composable
 fun MainAppTheme(
+    appTheme: AppThemeEnum,
     darkTheme: Boolean = isSystemInDarkTheme(),
     // Dynamic color is available on Android 12+
     dynamicColor: Boolean = false,
     content: @Composable () -> Unit
 ) {
+    Log.d("AppTheme", "appTheme: $appTheme")
+    var isDark = darkTheme
+
     val colorScheme = when {
         dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
             val context = LocalContext.current
             if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
         }
 
-        darkTheme -> DarkColorScheme
-        else -> LightColorScheme
+        else -> when (appTheme) {
+            AppThemeEnum.SYSTEM -> {
+                Log.d("AppTheme", "darkTheme: $darkTheme")
+                if (darkTheme) {
+                    isDark = true
+                    DarkColorScheme
+                } else {
+                    isDark = false
+                    LightColorScheme
+                }
+            }
+            AppThemeEnum.LIGHT -> {
+                isDark = false
+                LightColorScheme
+            }
+            AppThemeEnum.DARK -> {
+                isDark = true
+                DarkColorScheme
+            }
+        }
     }
     val view = LocalView.current
     if (!view.isInEditMode) {
         SideEffect {
             val window = (view.context as Activity).window
             window.statusBarColor = colorScheme.surface.toArgb()
-            window.navigationBarColor = colorScheme.surfaceColorAtElevation(4.dp).toArgb()
-            WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = !darkTheme
+            window.navigationBarColor = colorScheme.surfaceColorAtElevation(2.dp).toArgb()
+            WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = !isDark
         }
     }
 

@@ -1,6 +1,5 @@
 package com.munyroth.majorrecommendation.ui.components
 
-import android.content.res.Configuration
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -20,28 +19,28 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.munyroth.majorrecommendation.R
-import com.munyroth.majorrecommendation.ui.theme.AppTheme
+import com.munyroth.majorrecommendation.model.enums.AppThemeEnum
+import com.munyroth.majorrecommendation.utility.AppPreference
 import com.munyroth.majorrecommendation.viewmodel.MainEvent
 import com.munyroth.majorrecommendation.viewmodel.MainViewModel
-import java.util.Locale
 
 @Composable
-fun LanguageSettings(
+fun ThemeSettings(
     mainViewModel: MainViewModel = viewModel(),
 ) {
     val context = LocalContext.current
-    val languageCode = Locale.getDefault().language
+    val theme = AppPreference.get(context).getTheme()
 
     val radioOptions = mapOf(
-        "km" to stringResource(id = R.string.khmer),
-        "en" to stringResource(id = R.string.english)
+        AppThemeEnum.SYSTEM to stringResource(id = R.string.system),
+        AppThemeEnum.LIGHT to stringResource(id = R.string.light),
+        AppThemeEnum.DARK to stringResource(id = R.string.dark)
     )
 
-    val (selectedOption, onOptionSelected) = remember { mutableStateOf(languageCode) }
+    val (selectedOption, onOptionSelected) = remember { mutableStateOf(theme) }
 
     Column(Modifier.selectableGroup()) {
         radioOptions.forEach { text ->
@@ -51,7 +50,10 @@ fun LanguageSettings(
                     .height(56.dp)
                     .selectable(
                         selected = (text.key == selectedOption),
-                        onClick = { onOptionSelected(text.key) },
+                        onClick = {
+                            onOptionSelected(text.key)
+                            mainViewModel.onEvent(MainEvent.ThemeChange(text.key))
+                        },
                         role = Role.RadioButton
                     )
                     .padding(horizontal = 16.dp),
@@ -71,11 +73,9 @@ fun LanguageSettings(
 
         Button(
             onClick = {
+                AppPreference.get(context).setTheme(selectedOption)
+                mainViewModel.onEvent(MainEvent.ThemeChange(selectedOption))
                 mainViewModel.showBottomSheet = false
-                if (selectedOption != languageCode) {
-                    mainViewModel.showLanguageDialog = true
-                    mainViewModel.onEvent(MainEvent.LanguageChange(selectedOption))
-                }
             },
             modifier = Modifier
                 .fillMaxWidth()
@@ -84,14 +84,5 @@ fun LanguageSettings(
         ) {
             Text(text = stringResource(id = R.string.save))
         }
-    }
-}
-
-@Preview
-@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
-@Composable
-fun LanguageSettingsPreview() {
-    AppTheme {
-        LanguageSettings()
     }
 }

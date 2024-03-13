@@ -20,8 +20,8 @@ android {
         applicationId = "com.munyroth.majorrecommendation"
         minSdk = 30
         targetSdk = 34
-        versionCode = 7
-        versionName = "2.1"
+        versionCode = 8
+        versionName = "2.2"
         buildConfigField("String", "BASE_URL", "\"https://major.furniturestores.me/api/\"")
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -117,6 +117,7 @@ dependencies {
     implementation("androidx.core:core-splashscreen:1.0.1")
     // AppCompat
     implementation("androidx.appcompat:appcompat:1.6.1")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
 
     // Jetpack Compose
     val composeBom = platform("androidx.compose:compose-bom:2024.02.01")

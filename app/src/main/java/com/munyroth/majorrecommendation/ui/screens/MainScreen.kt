@@ -14,6 +14,10 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -27,10 +31,9 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.munyroth.majorrecommendation.R
-import com.munyroth.majorrecommendation.model.enums.AppThemeEnum
 import com.munyroth.majorrecommendation.ui.fragment.Home
 import com.munyroth.majorrecommendation.ui.fragment.More
-import com.munyroth.majorrecommendation.ui.theme.MainAppTheme
+import com.munyroth.majorrecommendation.ui.theme.AppTheme
 import com.munyroth.majorrecommendation.viewmodel.MainViewModel
 
 sealed class Screen(val route: String, val label: Int, val iconResId: Int) {
@@ -45,6 +48,9 @@ fun MainScreen(
 ) {
     val navController = rememberNavController()
 
+    // Initialize title as a mutable state
+    var title by remember { mutableStateOf("") }
+
     Scaffold(
         topBar = {
             TopAppBar(
@@ -54,7 +60,7 @@ fun MainScreen(
                             .copy(fontWeight = FontWeight.Bold),
                         modifier = Modifier.fillMaxWidth(),
                         textAlign = TextAlign.Start,
-                        text = stringResource(id = R.string.app_name),
+                        text = title,
                     )
                 },
                 navigationIcon = {
@@ -75,6 +81,13 @@ fun MainScreen(
             NavigationBar {
                 val navBackStackEntry = navController.currentBackStackEntryAsState()
                 val currentRoute = navBackStackEntry.value?.destination?.route
+
+                title = when (currentRoute) {
+                    Screen.Home.route -> stringResource(id = Screen.Home.label)
+                    Screen.More.route -> stringResource(id = Screen.More.label)
+                    // Add more cases for additional screens if necessary
+                    else -> title // Fallback to the current title
+                }
 
                 items.forEach { screen ->
                     NavigationBarItem(
@@ -112,9 +125,7 @@ fun MainScreen(
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 fun PreviewScreenMain() {
-    MainAppTheme (
-        appTheme = AppThemeEnum.SYSTEM
-    ) {
+    AppTheme {
         MainScreen()
     }
 }

@@ -1,6 +1,5 @@
 package com.munyroth.majorrecommendation.ui.activity
 
-import android.os.Bundle
 import androidx.activity.compose.setContent
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -9,9 +8,7 @@ import com.munyroth.majorrecommendation.ui.screens.ResultRecommendationScreen
 import com.munyroth.majorrecommendation.ui.theme.AppTheme
 
 class ResultRecommendationActivity : BaseActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
+    override fun init() {
         val gson = Gson()
         val json = intent.getStringExtra("data")
         val arrayType = object : TypeToken<List<Recommendation>>() {}.type

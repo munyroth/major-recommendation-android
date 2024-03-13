@@ -3,6 +3,7 @@ package com.munyroth.majorrecommendation.utility
 import android.content.Context
 import android.content.SharedPreferences
 import com.munyroth.majorrecommendation.model.enums.AppThemeEnum
+import java.util.Locale
 
 class AppPreference private constructor(context: Context) {
 
@@ -30,8 +31,8 @@ class AppPreference private constructor(context: Context) {
         pref.edit().putString(KEY_LANGUAGE, language).apply()
     }
 
-    fun getLanguage(): String? {
-        return pref.getString(KEY_LANGUAGE, null)
+    fun getLanguage(): String {
+        return pref.getString(KEY_LANGUAGE, null) ?: Locale.getDefault().language
     }
 
     // Theme

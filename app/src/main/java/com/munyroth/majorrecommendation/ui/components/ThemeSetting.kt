@@ -47,7 +47,7 @@ fun ThemeSettings(
             Row(
                 Modifier
                     .fillMaxWidth()
-                    .height(56.dp)
+                    .height(54.dp)
                     .selectable(
                         selected = (text.key == selectedOption),
                         onClick = {
@@ -79,7 +79,7 @@ fun ThemeSettings(
             },
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 12.dp, bottom = 48.dp)
+                .padding(top = 12.dp)
                 .padding(horizontal = 16.dp)
         ) {
             Text(text = stringResource(id = R.string.save))

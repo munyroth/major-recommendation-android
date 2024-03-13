@@ -61,7 +61,7 @@ fun WarningDialog(
             ) {
                 Text(
                     text = stringResource(
-                        id = R.string.dismise
+                        id = R.string.dismiss
                     )
                 )
             }

@@ -35,7 +35,7 @@ import com.munyroth.majorrecommendation.ui.theme.AppTheme
 fun SelectClassStudyScreen() {
     val context = LocalContext.current
 
-    BetterScaffold(title = stringResource(id = R.string.app_name)) { innerPadding ->
+    BetterScaffold(title = stringResource(id = R.string.title_major_recommendation)) { innerPadding ->
         Column(
             modifier = Modifier
                 .padding(innerPadding)

@@ -1,6 +1,5 @@
 package com.munyroth.majorrecommendation.ui.activity
 
-import android.os.Bundle
 import androidx.activity.compose.setContent
 import com.munyroth.majorrecommendation.ui.screens.UniversityDetailScreen
 import com.munyroth.majorrecommendation.ui.theme.AppTheme
@@ -12,9 +11,7 @@ class UniversityDetailActivity : BaseActivity() {
         const val EXTRA_UNIVERSITY_LOGO = "university_logo"
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
+    override fun init() {
         setContent {
             AppTheme {
                 UniversityDetailScreen(

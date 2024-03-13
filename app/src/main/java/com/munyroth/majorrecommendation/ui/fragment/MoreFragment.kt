@@ -76,8 +76,8 @@ fun More(
             title = stringResource(id = R.string.change_language),
             message = stringResource(id = R.string.change_language_message),
             onConfirm = {
-                if (mainViewModel.stateApp.language != languageCode)
-                    changeLocales(context, mainViewModel.stateApp.language)
+                if (mainViewModel.stateApp?.language != languageCode)
+                    mainViewModel.stateApp?.language?.let { changeLocales(context, it) }
                 mainViewModel.showLanguageDialog = false
             },
             onDismiss = {
@@ -97,7 +97,6 @@ fun More(
     Column {
         LazyColumn(
             modifier = Modifier.fillMaxSize()
-                .padding(top = 16.dp)
         ) {
             item {
                 ItemContent(
@@ -112,7 +111,7 @@ fun More(
                     }
                 }
                 HorizontalDivider(
-                    modifier = Modifier.padding(vertical = 4.dp, horizontal = 16.dp),
+                    modifier = Modifier.padding(horizontal = 16.dp),
                 )
             }
 
@@ -153,7 +152,7 @@ fun ItemContent(
         modifier = Modifier
             .clickable { onClick() }
             .fillMaxWidth()
-            .height(48.dp)
+            .height(54.dp)
             .padding(horizontal = 16.dp)
     ) {
         Row(

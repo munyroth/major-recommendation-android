@@ -1,18 +1,22 @@
 package com.munyroth.majorrecommendation.ui.activity
 
 import android.content.Context
+import android.graphics.Color
 import android.os.Build
+import android.os.Bundle
 import androidx.activity.ComponentActivity
+import androidx.activity.SystemBarStyle
+import androidx.activity.enableEdgeToEdge
 import com.munyroth.majorrecommendation.utility.AppPreference
 import java.util.Locale
 
-open class BaseActivity : ComponentActivity() {
+abstract class BaseActivity : ComponentActivity() {
     override fun attachBaseContext(newBase: Context) {
         super.attachBaseContext(updateBaseContextLocale(newBase))
     }
 
     private fun updateBaseContextLocale(context: Context): Context {
-        val language = AppPreference.get(context).getLanguage() ?: "km"
+        val language = AppPreference.get(context).getLanguage()
         val locale = Locale(language)
         Locale.setDefault(locale)
 
@@ -25,4 +29,16 @@ open class BaseActivity : ComponentActivity() {
 
         return context.createConfigurationContext(configuration)
     }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge(
+            statusBarStyle = SystemBarStyle.dark(Color.TRANSPARENT),
+            navigationBarStyle = SystemBarStyle.dark(Color.TRANSPARENT)
+        )
+        
+        init()
+    }
+
+    abstract fun init()
 }

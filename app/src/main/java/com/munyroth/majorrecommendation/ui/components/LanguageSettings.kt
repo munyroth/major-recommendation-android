@@ -17,13 +17,13 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.munyroth.majorrecommendation.R
+import com.munyroth.majorrecommendation.model.enums.AppLanguageEnum
 import com.munyroth.majorrecommendation.ui.theme.AppTheme
 import com.munyroth.majorrecommendation.viewmodel.MainEvent
 import com.munyroth.majorrecommendation.viewmodel.MainViewModel
@@ -33,12 +33,11 @@ import java.util.Locale
 fun LanguageSettings(
     mainViewModel: MainViewModel = viewModel(),
 ) {
-    val context = LocalContext.current
     val languageCode = Locale.getDefault().language
 
     val radioOptions = mapOf(
-        "km" to stringResource(id = R.string.khmer),
-        "en" to stringResource(id = R.string.english)
+        AppLanguageEnum.KM.languageCode to stringResource(id = R.string.khmer),
+        AppLanguageEnum.EN.languageCode to stringResource(id = R.string.english)
     )
 
     val (selectedOption, onOptionSelected) = remember { mutableStateOf(languageCode) }
@@ -48,7 +47,7 @@ fun LanguageSettings(
             Row(
                 Modifier
                     .fillMaxWidth()
-                    .height(56.dp)
+                    .height(54.dp)
                     .selectable(
                         selected = (text.key == selectedOption),
                         onClick = { onOptionSelected(text.key) },
@@ -79,7 +78,7 @@ fun LanguageSettings(
             },
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 12.dp, bottom = 48.dp)
+                .padding(top = 12.dp)
                 .padding(horizontal = 16.dp)
         ) {
             Text(text = stringResource(id = R.string.save))

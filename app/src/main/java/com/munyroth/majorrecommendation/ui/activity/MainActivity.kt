@@ -4,25 +4,31 @@ import android.Manifest
 import android.app.AlertDialog
 import android.content.pm.PackageManager
 import android.os.Build
-import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.core.content.ContextCompat
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.messaging.FirebaseMessaging
+import com.munyroth.majorrecommendation.model.enums.AppThemeEnum
 import com.munyroth.majorrecommendation.ui.screens.MainScreen
-import com.munyroth.majorrecommendation.ui.theme.MainAppTheme
+import com.munyroth.majorrecommendation.ui.theme.AppTheme
+import com.munyroth.majorrecommendation.utility.AppPreference
 import com.munyroth.majorrecommendation.viewmodel.MainViewModel
+import com.munyroth.majorrecommendation.viewmodel.MainViewModelFactory
 
 class MainActivity : BaseActivity() {
-    private val mainViewModel: MainViewModel by viewModels()
+    private val mainViewModel: MainViewModel by viewModels {
+        MainViewModelFactory(
+            AppPreference.get(this).getTheme(),
+            AppPreference.get(this).getLanguage() ?: "km"
+        )
+    }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
+    override fun init() {
         FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
             if (!task.isSuccessful) {
                 Log.w("MainActivityTest", "Fetching FCM registration token failed", task.exception)
@@ -43,8 +49,17 @@ class MainActivity : BaseActivity() {
         askNotificationPermission()
 
         setContent {
-            MainAppTheme(
-                appTheme = mainViewModel.stateApp.theme
+            AppTheme(
+                darkTheme = when (mainViewModel.stateApp?.theme) {
+                    AppThemeEnum.SYSTEM -> isSystemInDarkTheme()
+                    AppThemeEnum.LIGHT -> false
+                    AppThemeEnum.DARK -> true
+                    null -> when (AppPreference.get(this).getTheme()) {
+                        AppThemeEnum.SYSTEM -> isSystemInDarkTheme()
+                        AppThemeEnum.LIGHT -> false
+                        AppThemeEnum.DARK -> true
+                    }
+                },
             ) {
                 MainScreen(mainViewModel)
             }

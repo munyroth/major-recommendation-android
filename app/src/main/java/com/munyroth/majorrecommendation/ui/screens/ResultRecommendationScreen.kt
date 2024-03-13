@@ -32,7 +32,7 @@ fun ResultRecommendationScreen(
     val context = LocalContext.current
 
     BetterScaffold(
-        title = stringResource(id = R.string.app_name)
+        title = stringResource(id = R.string.title_major_recommendation)
     ) { innerPadding ->
         Column(
             modifier = Modifier

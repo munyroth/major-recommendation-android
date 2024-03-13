@@ -25,6 +25,6 @@
     <string name="dark">ងងឹត</string>
     <string name="change_language">ការផ្លាស់ប្តូរភាសា</string>
     <string name="change_language_message">ការផ្លាស់ប្តូរភាសានឹងចាប់ផ្តើមកម្មវិធីឡើងវិញ។ តើអ្នកប្រាកដថាចង់ប្តូរភាសាទេ?</string>
-    <string name="dismise">បោះបង់</string>
+    <string name="dismiss">បោះបង់</string>
     <string name="confirm">យល់ព្រម</string>
 </resources>

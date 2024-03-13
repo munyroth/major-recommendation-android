@@ -1,14 +1,15 @@
 package com.munyroth.majorrecommendation.ui.components
 
 import androidx.compose.animation.animateContentSize
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material3.DockedSearchBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.SearchBar
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -28,11 +29,11 @@ fun BetterSearchBar(
     var isActive by remember { mutableStateOf(false) }
     var isClear by remember { mutableStateOf(false) }
 
-    SearchBar(
+    DockedSearchBar(
         modifier = modifier
             .animateContentSize()
             .then(
-                if (isActive) Modifier.fillMaxWidth()
+                if (isActive) Modifier.fillMaxSize()
                 else Modifier.fillMaxWidth(0.9F)
             ),
         query = query,

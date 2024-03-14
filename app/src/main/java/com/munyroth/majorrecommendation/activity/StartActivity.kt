@@ -1,4 +1,4 @@
-package com.munyroth.majorrecommendation.ui.activity
+package com.munyroth.majorrecommendation.activity
 
 import android.content.Intent
 import android.os.Bundle

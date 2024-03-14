@@ -47,19 +47,6 @@ fun MajorScreen(
                 .fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            var majors by remember { mutableStateOf(emptyList<Major>()) }
-
-            BetterSearchBar(
-                onSearch = { query ->
-                    majors = majorViewModel.searchMajors(query)
-                },
-                result = {
-                    majors.forEach { major ->
-                        MajorViewHolder(major = major)
-                    }
-                }
-            )
-
             MajorContent(majors = majorViewModel.majors.value)
         }
     }

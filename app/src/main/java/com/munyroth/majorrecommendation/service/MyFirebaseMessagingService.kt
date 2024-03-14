@@ -10,7 +10,7 @@ import androidx.core.app.NotificationCompat
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import com.munyroth.majorrecommendation.R
-import com.munyroth.majorrecommendation.ui.activity.MainActivity
+import com.munyroth.majorrecommendation.activity.MainActivity
 import com.munyroth.majorrecommendation.viewmodel.MainViewModel
 
 const val CHANNEL_ID = "MajorRecommendation"

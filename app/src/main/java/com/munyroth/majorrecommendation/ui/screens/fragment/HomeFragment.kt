@@ -1,4 +1,4 @@
-package com.munyroth.majorrecommendation.ui.fragment
+package com.munyroth.majorrecommendation.ui.screens.fragment
 
 import android.content.Intent
 import android.content.res.Configuration
@@ -27,17 +27,14 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.munyroth.majorrecommendation.R
-import com.munyroth.majorrecommendation.ui.activity.MajorActivity
-import com.munyroth.majorrecommendation.ui.activity.SelectClassStudyActivity
-import com.munyroth.majorrecommendation.ui.activity.UniversityActivity
+import com.munyroth.majorrecommendation.activity.MajorActivity
+import com.munyroth.majorrecommendation.activity.SelectClassStudyActivity
+import com.munyroth.majorrecommendation.activity.UniversityActivity
 import com.munyroth.majorrecommendation.ui.theme.AppTheme
-import com.munyroth.majorrecommendation.viewmodel.HomeViewModel
 
 @Composable
 fun Home() {
-    val viewModel: HomeViewModel = viewModel()
     val context = LocalContext.current
 
     Column(
@@ -65,7 +62,7 @@ fun Home() {
                 modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
             ) {
                 Image(
-                    painter = painterResource(id = R.drawable.img_major),
+                    painter = painterResource(id = R.drawable.img_search_major),
                     contentDescription = null,
                     modifier = Modifier.size(64.dp)
                 )
@@ -112,7 +109,7 @@ fun Home() {
                     verticalArrangement = Arrangement.Center
                 ) {
                     Image(
-                        painter = painterResource(id = R.drawable.img_student_thinking_about_major),
+                        painter = painterResource(id = R.drawable.img_major),
                         contentDescription = null,
                         modifier = Modifier.size(64.dp)
                     )

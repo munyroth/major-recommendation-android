@@ -13,6 +13,7 @@ import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -31,8 +32,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.munyroth.majorrecommendation.R
-import com.munyroth.majorrecommendation.ui.fragment.Home
-import com.munyroth.majorrecommendation.ui.fragment.More
+import com.munyroth.majorrecommendation.ui.screens.fragment.Home
+import com.munyroth.majorrecommendation.ui.screens.fragment.More
 import com.munyroth.majorrecommendation.ui.theme.AppTheme
 import com.munyroth.majorrecommendation.viewmodel.MainViewModel
 
@@ -61,13 +62,6 @@ fun MainScreen(
                         modifier = Modifier.fillMaxWidth(),
                         textAlign = TextAlign.Start,
                         text = title,
-                    )
-                },
-                navigationIcon = {
-                    Image(
-                        modifier = Modifier.width(64.dp),
-                        painter = painterResource(id = R.drawable.ic_app),
-                        contentDescription = null,
                     )
                 }
             )

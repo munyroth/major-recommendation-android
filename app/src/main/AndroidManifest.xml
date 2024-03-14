@@ -24,7 +24,7 @@
             android:value="true" />
 
         <activity
-            android:name=".ui.activity.MainActivity"
+            android:name=".activity.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -32,28 +32,28 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.activity.SelectClassStudyActivity"
+            android:name=".activity.SelectClassStudyActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activity.InputSubjectScoreScienceActivity"
+            android:name=".activity.InputSubjectScoreScienceActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activity.InputSubjectScoreSocialActivity"
+            android:name=".activity.InputSubjectScoreSocialActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activity.ResultRecommendationActivity"
+            android:name=".activity.ResultRecommendationActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activity.MajorActivity"
+            android:name=".activity.MajorActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activity.UniversityActivity"
+            android:name=".activity.UniversityActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activity.UniversityDetailActivity"
+            android:name=".activity.UniversityDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activity.StartActivity"
+            android:name=".activity.StartActivity"
             android:exported="false" />
 
         <service

@@ -24,7 +24,7 @@ import coil.compose.AsyncImage
 import com.munyroth.majorrecommendation.R
 import com.munyroth.majorrecommendation.model.Faculty
 import com.munyroth.majorrecommendation.model.University
-import com.munyroth.majorrecommendation.ui.activity.UniversityDetailActivity
+import com.munyroth.majorrecommendation.activity.UniversityDetailActivity
 import com.munyroth.majorrecommendation.ui.theme.AppTheme
 import java.util.Locale
 

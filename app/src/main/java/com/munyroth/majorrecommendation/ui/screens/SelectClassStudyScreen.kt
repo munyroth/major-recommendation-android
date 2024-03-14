@@ -26,8 +26,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.munyroth.majorrecommendation.R
-import com.munyroth.majorrecommendation.ui.activity.InputSubjectScoreScienceActivity
-import com.munyroth.majorrecommendation.ui.activity.InputSubjectScoreSocialActivity
+import com.munyroth.majorrecommendation.activity.InputSubjectScoreScienceActivity
+import com.munyroth.majorrecommendation.activity.InputSubjectScoreSocialActivity
 import com.munyroth.majorrecommendation.ui.components.BetterScaffold
 import com.munyroth.majorrecommendation.ui.theme.AppTheme
 
@@ -62,7 +62,7 @@ fun SelectClassStudyScreen() {
                         modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
                     ) {
                         Image(
-                            painter = painterResource(id = R.drawable.img_major),
+                            painter = painterResource(id = R.drawable.img_search_major),
                             contentDescription = null,
                             modifier = Modifier.size(64.dp)
                         )
@@ -104,7 +104,7 @@ fun SelectClassStudyScreen() {
                         modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
                     ) {
                         Image(
-                            painter = painterResource(id = R.drawable.img_major),
+                            painter = painterResource(id = R.drawable.img_search_major),
                             contentDescription = null,
                             modifier = Modifier.size(64.dp)
                         )

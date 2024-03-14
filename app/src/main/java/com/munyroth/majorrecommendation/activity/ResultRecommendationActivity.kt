@@ -1,4 +1,4 @@
-package com.munyroth.majorrecommendation.ui.activity
+package com.munyroth.majorrecommendation.activity
 
 import androidx.activity.compose.setContent
 import com.google.gson.Gson

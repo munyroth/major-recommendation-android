@@ -20,7 +20,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.munyroth.majorrecommendation.R
 import com.munyroth.majorrecommendation.model.Recommendation
-import com.munyroth.majorrecommendation.ui.activity.MainActivity
+import com.munyroth.majorrecommendation.activity.MainActivity
 import com.munyroth.majorrecommendation.ui.components.BetterScaffold
 import com.munyroth.majorrecommendation.ui.screens.viewholder.ResultRecommendationViewHolder
 import com.munyroth.majorrecommendation.ui.theme.AppTheme

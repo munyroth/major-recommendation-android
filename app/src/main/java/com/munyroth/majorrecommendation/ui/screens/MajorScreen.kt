@@ -13,7 +13,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -23,7 +22,7 @@ import com.munyroth.majorrecommendation.model.Major
 import com.munyroth.majorrecommendation.model.ResData
 import com.munyroth.majorrecommendation.model.Status
 import com.munyroth.majorrecommendation.ui.components.BetterScaffold
-import com.munyroth.majorrecommendation.ui.components.BetterSearchBar
+import com.munyroth.majorrecommendation.ui.components.BetterSearch
 import com.munyroth.majorrecommendation.ui.components.DisplayError
 import com.munyroth.majorrecommendation.ui.components.DisplayLoading
 import com.munyroth.majorrecommendation.ui.screens.viewholder.MajorViewHolder
@@ -34,13 +33,25 @@ import com.munyroth.majorrecommendation.viewmodel.MajorViewModel
 fun MajorScreen(
     majorViewModel: MajorViewModel = viewModel()
 ) {
-    val context = LocalContext.current
+    var isSearchActive by remember { mutableStateOf(false) }
 
     LaunchedEffect(Unit) {
         majorViewModel.loadMajors()
     }
 
-    BetterScaffold(title = stringResource(id = R.string.title_majors)) { innerPadding ->
+    BetterScaffold(
+        title = stringResource(id = R.string.title_majors),
+        isSearch = isSearchActive,
+        searchContent = {
+            BetterSearch(
+                isActive = isSearchActive,
+                onActive = { isSearchActive = it },
+                onSearch = { query ->
+                    majorViewModel.loadMajors(query)
+                }
+            )
+        }
+    ) { innerPadding ->
         Column(
             modifier = Modifier
                 .padding(innerPadding)

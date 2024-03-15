@@ -17,6 +17,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import com.munyroth.majorrecommendation.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -51,7 +53,7 @@ fun BetterSearchBar(
         },
         active = isActive,
         onActiveChange = { isActive = it },
-        placeholder = { Text("Search") },
+        placeholder = { Text(text = stringResource(id = R.string.search_hint)) },
         leadingIcon = { Icon(Icons.Filled.Search, contentDescription = null) },
         trailingIcon = if (isActive) {
             {
@@ -60,8 +62,7 @@ fun BetterSearchBar(
                         if (query.isNotEmpty()) {
                             query = ""
                             isClear = true
-                        }
-                        else isActive = false
+                        } else isActive = false
                     }) {
                     Icon(Icons.Filled.Close, contentDescription = null)
                 }

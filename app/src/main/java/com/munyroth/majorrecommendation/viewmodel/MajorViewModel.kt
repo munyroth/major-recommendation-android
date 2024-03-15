@@ -20,11 +20,4 @@ class MajorViewModel : BaseViewModel() {
             call = { RetrofitInstance.get().api.getMajors(search) }
         )
     }
-
-    // Search majors
-    fun searchMajors(search: String): List<Major> {
-        return _majors.value.data?.data?.filter {
-            it.major.contains(search, true)
-        } ?: emptyList()
-    }
 }

@@ -5,7 +5,13 @@
     <string name="title_account">គណនី</string>
 
     <string name="title_change_language">ប្តូរភាសា</string>
+    <string name="change_language">ការផ្លាស់ប្តូរភាសា</string>
+    <string name="change_language_message">ការផ្លាស់ប្តូរភាសានឹងចាប់ផ្តើមកម្មវិធីឡើងវិញ។ តើអ្នកប្រាកដថាចង់ប្តូរភាសាទេ?</string>
+
     <string name="title_change_theme">ប្តូររូបរាង</string>
+    <string name="system">ប្រព័ន្ធ</string>
+    <string name="light">ភ្លឺ</string>
+    <string name="dark">ងងឹត</string>
 
     <string name="title_major_recommendation">ការណែនាំមុខជំនាញ</string>
     <string name="title_majors">ជំនាញ</string>
@@ -17,14 +23,13 @@
     <string name="label_result_recommendation">តាមរយៈពិន្ទុរបស់អ្នក, យើងអាចគណនាដើម្បីស្វែងយល់អំពីជំនាញដែលពាក់ព័ន្ធសម្រាប់អ្នក</string>
     <string name="label_contact">ទំនាក់ទំនង:</string>
     <string name="label_faculty">មហាវិទ្យាល័យ:</string>
+
     <string name="next">បន្ទាប់</string>
     <string name="finish">បញ្ចប់</string>
     <string name="save">រក្សាទុក</string>
-    <string name="system">ប្រព័ន្ធ</string>
-    <string name="light">ភ្លឺ</string>
-    <string name="dark">ងងឹត</string>
-    <string name="change_language">ការផ្លាស់ប្តូរភាសា</string>
-    <string name="change_language_message">ការផ្លាស់ប្តូរភាសានឹងចាប់ផ្តើមកម្មវិធីឡើងវិញ។ តើអ្នកប្រាកដថាចង់ប្តូរភាសាទេ?</string>
+
     <string name="dismiss">បោះបង់</string>
     <string name="confirm">យល់ព្រម</string>
+
+    <string name="search_hint">ស្វែងរក</string>
 </resources>

@@ -23,23 +23,32 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.munyroth.majorrecommendation.R
 
 @Composable
 fun BetterSearch(
     modifier: Modifier = Modifier,
+    isActive: Boolean,
+    onActive: (Boolean) -> Unit,
     onSearch: (String) -> Unit,
 ) {
 
     var query by remember { mutableStateOf("") }
-    var isActive by remember { mutableStateOf(false) }
-    var isClear by remember { mutableStateOf(false) }
+
+    val focusRequester = remember { FocusRequester() }
+    val focusManager = LocalFocusManager.current
 
     Box(modifier = Modifier.fillMaxWidth()) {
         TextField(
             modifier = modifier
                 .animateContentSize()
+                .focusRequester(focusRequester)
                 .align(Alignment.CenterEnd)
                 .then(
                     if (isActive) {
@@ -59,20 +68,14 @@ fun BetterSearch(
             value = query,
             onValueChange = {
                 query = it
-                if (it.isNotEmpty()) {
-                    isClear = false
-                    onSearch(query)
-                } else {
-                    isClear = true
-                }
+                onSearch(query)
             },
-            enabled = isActive,
             shape = CircleShape,
             singleLine = true,
             placeholder = {
                 if (isActive) {
                     Text(
-                        text = "Search",
+                        text = stringResource(id = R.string.search_hint),
                         style = MaterialTheme.typography.titleMedium
                     )
                 }
@@ -81,18 +84,26 @@ fun BetterSearch(
                 IconButton(
                     modifier = Modifier.padding(4.dp),
                     onClick = {
-                        isActive = !isActive
+                        if (!isActive) focusRequester.requestFocus()
+                        else {
+                            focusManager.clearFocus()
+                            query = ""
+                        }
+
+                        onActive(!isActive)
                     }) {
 
                     if (!isActive) {
                         Icon(
                             imageVector = Icons.Filled.Search,
-                            contentDescription = null
+                            contentDescription = null,
+                            tint = MaterialTheme.colorScheme.onSurface
                         )
                     } else {
                         Icon(
                             imageVector = Icons.AutoMirrored.Outlined.ArrowBack,
-                            contentDescription = null
+                            contentDescription = null,
+                            tint = MaterialTheme.colorScheme.onSurface
                         )
                     }
                 }
@@ -101,10 +112,14 @@ fun BetterSearch(
                 if (query.isNotEmpty()) {
                     IconButton(
                         modifier = Modifier.padding(4.dp),
-                        onClick = { query = "" }) {
+                        onClick = {
+                            query = ""
+                            onSearch(query)
+                        }) {
                         Icon(
                             imageVector = Icons.Outlined.Close,
-                            contentDescription = null
+                            contentDescription = null,
+                            tint = MaterialTheme.colorScheme.onSurface
                         )
                     }
                 }

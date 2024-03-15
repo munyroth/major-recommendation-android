@@ -23,12 +23,14 @@ interface ApiService {
     // Endpoint for getting majors
     @GET("v1/major_type")
     suspend fun getMajors(
+        @Query("page") page: Int = 1,
         @Query("search") search: String? = null
     ): Response<ResData<List<Major>>>
 
     // Endpoint for getting universities
     @GET("v1/university")
     suspend fun getUniversities(
+        @Query("page") page: Int = 1,
         @Query("search") search: String? = null
     ): Response<ResData<List<University>>>
 

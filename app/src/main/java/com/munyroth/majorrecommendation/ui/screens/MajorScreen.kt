@@ -24,7 +24,7 @@ import com.munyroth.majorrecommendation.model.Status
 import com.munyroth.majorrecommendation.ui.components.BetterScaffold
 import com.munyroth.majorrecommendation.ui.components.BetterSearch
 import com.munyroth.majorrecommendation.ui.components.DisplayError
-import com.munyroth.majorrecommendation.ui.components.DisplayLoading
+import com.munyroth.majorrecommendation.ui.components.ShimmerAnimation
 import com.munyroth.majorrecommendation.ui.screens.viewholder.MajorViewHolder
 import com.munyroth.majorrecommendation.ui.theme.AppTheme
 import com.munyroth.majorrecommendation.viewmodel.MajorViewModel
@@ -67,14 +67,20 @@ fun MajorScreen(
 fun MajorContent(majors: ApiData<ResData<List<Major>>>) {
     when (majors.status) {
         Status.LOADING -> {
-            DisplayLoading()
+            val maxShimmerCount = 12
+
+            LazyColumn(
+                modifier = Modifier.fillMaxSize()
+            ) {
+                items(maxShimmerCount) {
+                    ShimmerAnimation()
+                }
+            }
         }
 
         Status.SUCCESS -> {
-            // Display the list of universities
             LazyColumn(
-                modifier = Modifier
-                    .fillMaxSize()
+                modifier = Modifier.fillMaxSize()
             ) {
                 items(majors.data?.data ?: emptyList()) { item ->
                     MajorViewHolder(major = item)
@@ -83,7 +89,7 @@ fun MajorContent(majors: ApiData<ResData<List<Major>>>) {
         }
 
         Status.ERROR -> {
-            DisplayError(message = "An error occurred while loading the majors")
+            DisplayError(message = stringResource(id = R.string.error_message))
         }
 
         else -> {

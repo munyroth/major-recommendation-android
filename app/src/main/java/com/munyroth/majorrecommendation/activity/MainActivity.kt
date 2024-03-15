@@ -24,26 +24,36 @@ class MainActivity : BaseActivity() {
     private val mainViewModel: MainViewModel by viewModels {
         MainViewModelFactory(
             AppPreference.get(this).getTheme(),
-            AppPreference.get(this).getLanguage() ?: "km"
+            AppPreference.get(this).getLanguage()
         )
     }
 
     override fun init() {
-        FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
-            if (!task.isSuccessful) {
-                Log.w("MainActivityTest", "Fetching FCM registration token failed", task.exception)
-                return@OnCompleteListener
-            }
+        // Get FCM token
+        if (AppPreference.get(this).getFcmToken() == null) {
+            FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
+                if (!task.isSuccessful) {
+                    Log.w(
+                        "MainActivityTest",
+                        "Fetching FCM registration token failed",
+                        task.exception
+                    )
+                    return@OnCompleteListener
+                }
 
-            // Get new FCM registration token
-            val token = task.result
+                // Get new FCM registration token
+                val token = task.result
 
-            // Log and toast
-            Log.d("MainActivityTest", "Token: $token")
+                // Log and toast
+                Log.d("MainActivityTest", "Token: $token")
 
-            // Send the token to the server
-            mainViewModel.sendFcmToken(token)
-        })
+                // Send the token to the server
+                mainViewModel.sendFcmToken(token)
+
+                // Save the token to the shared preference
+                AppPreference.get(this).setFcmToken(token)
+            })
+        }
 
         // Ask for notification permission
         askNotificationPermission()

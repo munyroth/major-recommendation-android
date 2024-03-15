@@ -1,5 +1,7 @@
 package com.munyroth.majorrecommendation.ui.components
 
+import android.os.Handler
+import android.os.Looper
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -68,7 +70,10 @@ fun BetterSearch(
             value = query,
             onValueChange = {
                 query = it
-                onSearch(query)
+
+                Handler(Looper.getMainLooper()).postDelayed({
+                    onSearch(query)
+                }, 300) // 300 milliseconds (0.3 seconds) delay
             },
             shape = CircleShape,
             singleLine = true,

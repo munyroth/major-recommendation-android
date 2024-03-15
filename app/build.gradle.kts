@@ -161,6 +161,9 @@ dependencies {
     implementation("com.google.firebase:firebase-messaging")
     implementation("com.google.firebase:firebase-inappmessaging-display")
 
+    // Add the dependency for the Remote Config library
+    implementation("androidx.security:security-crypto:1.0.0")
+
     testImplementation("junit:junit:4.13.2")
 
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

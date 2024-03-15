@@ -36,4 +36,5 @@
     <string name="confirm">Confirm</string>
 
     <string name="search_hint">Search</string>
+    <string name="error_message">An error occurred while loading</string>
 </resources>

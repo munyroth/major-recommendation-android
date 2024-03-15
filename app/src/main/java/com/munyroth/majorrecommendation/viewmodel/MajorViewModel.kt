@@ -17,7 +17,7 @@ class MajorViewModel : BaseViewModel() {
     fun loadMajors(search: String? = null) {
         performApiCall(
             response = _majors,
-            call = { RetrofitInstance.get().api.getMajors(search) }
+            call = { RetrofitInstance.get().api.getMajors(search = search) }
         )
     }
 }

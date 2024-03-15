@@ -24,7 +24,7 @@ import com.munyroth.majorrecommendation.model.University
 import com.munyroth.majorrecommendation.ui.components.BetterScaffold
 import com.munyroth.majorrecommendation.ui.components.BetterSearch
 import com.munyroth.majorrecommendation.ui.components.DisplayError
-import com.munyroth.majorrecommendation.ui.components.DisplayLoading
+import com.munyroth.majorrecommendation.ui.components.ShimmerAnimation
 import com.munyroth.majorrecommendation.ui.screens.viewholder.UniversityViewHolder
 import com.munyroth.majorrecommendation.ui.theme.AppTheme
 import com.munyroth.majorrecommendation.viewmodel.UniversityViewModel
@@ -69,11 +69,18 @@ fun UniversityScreen(
 fun UniversityContent(universities: ApiData<ResData<List<University>>>) {
     when (universities.status) {
         Status.LOADING -> {
-            DisplayLoading()
+            val maxShimmerCount = 12
+
+            LazyColumn(
+                modifier = Modifier.fillMaxSize()
+            ) {
+                items(maxShimmerCount) {
+                    ShimmerAnimation()
+                }
+            }
         }
 
         Status.SUCCESS -> {
-            // Display the list of universities
             LazyColumn(
                 modifier = Modifier
                     .fillMaxSize()
@@ -85,7 +92,7 @@ fun UniversityContent(universities: ApiData<ResData<List<University>>>) {
         }
 
         Status.ERROR -> {
-            DisplayError(message = "An error occurred while loading universities")
+            DisplayError(message = stringResource(id = R.string.error_message))
         }
 
         else -> {

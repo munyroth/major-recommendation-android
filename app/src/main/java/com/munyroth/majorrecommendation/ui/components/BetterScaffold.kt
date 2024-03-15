@@ -65,7 +65,7 @@ fun BetterScaffold(
                     if (!isSearch) {
                         IconButton(
                             onClick = {
-                                (context as Activity).onBackPressed()
+                                (context as Activity).finish()
                             }) {
                             Icon(
                                 imageVector = Icons.AutoMirrored.Outlined.ArrowBack,

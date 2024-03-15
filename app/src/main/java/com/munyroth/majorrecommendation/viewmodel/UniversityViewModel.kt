@@ -17,7 +17,31 @@ class UniversityViewModel : BaseViewModel(){
     fun loadUniversities(search : String? = null) {
         performApiCall(
             response = _universities,
-            call = { RetrofitInstance.get().api.getUniversities(search) }
+            call = { RetrofitInstance.get().api.getUniversities(search = search) }
+        )
+    }
+
+    fun loadMoreUniversities(page: Int) {
+        performApiCall(
+            response = _universities,
+            call = { RetrofitInstance.get().api.getUniversities(page = page) },
+            onSuccess = { response ->
+                val newData = response.data
+                val currentData = _universities.value.data?.data
+                val updatedData = currentData?.toMutableList()?.apply {
+                    addAll(newData)
+                } ?: newData
+
+                ApiData(
+                    Status.SUCCESS,
+                    ResData(
+                        response.status,
+                        response.message,
+                        updatedData,
+                        response.meta),
+                    response.meta
+                )
+            }
         )
     }
 }

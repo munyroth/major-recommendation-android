@@ -23,9 +23,9 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.google.gson.Gson
 import com.munyroth.majorrecommendation.R
+import com.munyroth.majorrecommendation.activity.ResultRecommendationActivity
 import com.munyroth.majorrecommendation.model.Status
 import com.munyroth.majorrecommendation.request.RecommendationRequest
-import com.munyroth.majorrecommendation.activity.ResultRecommendationActivity
 import com.munyroth.majorrecommendation.ui.components.BetterScaffold
 import com.munyroth.majorrecommendation.viewmodel.RecommendationViewModel
 

@@ -112,12 +112,12 @@ android {
 dependencies {
 
     // Kotlin
-    implementation("androidx.core:core-ktx:1.12.0")
+    implementation("androidx.core:core-ktx:1.13.1")
     // Splash screen
     implementation("androidx.core:core-splashscreen:1.0.1")
     // AppCompat
-    implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
+    implementation("androidx.appcompat:appcompat:1.7.0")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.1")
 
     // Jetpack Compose
     val composeBom = platform("androidx.compose:compose-bom:2024.02.01")
@@ -132,9 +132,9 @@ dependencies {
     implementation("androidx.compose.material3:material3")
 
     // Integration with activities
-    implementation("androidx.activity:activity-compose:1.8.2")
+    implementation("androidx.activity:activity-compose:1.9.0")
     // Integration with ViewModels
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.1")
     // Integration with LiveData
     implementation("androidx.compose.runtime:runtime-livedata")
     // Integration with Navigation
@@ -148,7 +148,7 @@ dependencies {
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
 
     // Import the BoM for the Firebase platform
-    implementation(platform("com.google.firebase:firebase-bom:32.7.4"))
+    implementation(platform("com.google.firebase:firebase-bom:33.1.0"))
 
     // Add the dependencies for the Crashlytics and Analytics libraries
     implementation("com.google.firebase:firebase-crashlytics")

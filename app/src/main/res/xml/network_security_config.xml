@@ -4,6 +4,6 @@
         <domain includeSubdomains="true">10.0.2.2</domain>
     </domain-config>
     <domain-config cleartextTrafficPermitted="true">
-        <domain includeSubdomains="true">192.168.3.59</domain>
+        <domain includeSubdomains="true">128.199.113.218</domain>
     </domain-config>
 </network-security-config>

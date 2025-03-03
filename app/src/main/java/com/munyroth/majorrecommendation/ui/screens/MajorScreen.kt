@@ -1,10 +1,12 @@
 package com.munyroth.majorrecommendation.ui.screens
 
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -15,6 +17,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.munyroth.majorrecommendation.R
 import com.munyroth.majorrecommendation.model.ApiData
@@ -79,11 +82,23 @@ fun MajorContent(majors: ApiData<ResData<List<Major>>>) {
         }
 
         Status.SUCCESS -> {
-            LazyColumn(
-                modifier = Modifier.fillMaxSize()
-            ) {
-                items(majors.data?.data ?: emptyList()) { item ->
-                    MajorViewHolder(major = item)
+            val majorList = majors.data?.data ?: emptyList()
+            if (majorList.isEmpty()) {
+                Box(
+                    modifier = Modifier.fillMaxSize(),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        text = stringResource(id = R.string.no_data_message)
+                    )
+                }
+            } else {
+                LazyColumn(
+                    modifier = Modifier.fillMaxSize()
+                ) {
+                    items(majorList) { item ->
+                        MajorViewHolder(major = item)
+                    }
                 }
             }
         }

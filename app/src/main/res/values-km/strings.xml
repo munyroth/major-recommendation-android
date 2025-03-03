@@ -33,4 +33,5 @@
 
     <string name="search_hint">ស្វែងរក</string>
     <string name="error_message">កំហុសបានកើតឡើងខណៈពេលកំពុងផ្ទុក</string>
+    <string name="no_data_message">គ្មានទិន្នន័យ</string>
 </resources>

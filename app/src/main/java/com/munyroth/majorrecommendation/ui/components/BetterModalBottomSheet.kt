@@ -4,7 +4,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.asPaddingValues
-import androidx.compose.foundation.layout.displayCutout
 import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.BottomSheetDefaults
@@ -34,8 +33,7 @@ fun BetterModalBottomSheet(
     tonalElevation: Dp = BottomSheetDefaults.Elevation,
     scrimColor: Color = BottomSheetDefaults.ScrimColor,
     dragHandle: @Composable (() -> Unit)? = { BottomSheetDefaults.DragHandle() },
-    windowInsets: WindowInsets = WindowInsets.displayCutout,
-    content: @Composable ColumnScope.() -> Unit,
+    content: @Composable (ColumnScope.() -> Unit),
 ) {
     val bottomPadding = WindowInsets.navigationBars.asPaddingValues().calculateBottomPadding()
 
@@ -50,7 +48,6 @@ fun BetterModalBottomSheet(
             tonalElevation = tonalElevation,
             scrimColor = scrimColor,
             dragHandle = dragHandle,
-            windowInsets = windowInsets
         ) {
             Column(modifier = Modifier.padding(bottom = bottomPadding)) {
                 content()
